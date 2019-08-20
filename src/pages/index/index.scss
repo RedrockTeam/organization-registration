@@ -1,0 +1,56 @@
+$index-color: #c4e8de;
+
+@keyframes appear {
+  0% {
+    transform: translate(0, 100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+.index {
+  width: 375px;
+  height: 667px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $index-color;
+
+  image:nth-of-type(1) {
+    width: 258px;
+    height: 250px;
+    margin-top: 90px;
+  }
+  image:nth-of-type(2) {
+    width: 158px;
+    height: 24px;
+    margin-top: 22px;
+    animation: appear 1s;
+  }
+  button {
+    width: 316px;
+    height: 50px;
+    margin-top: 134px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 2px 4px 2px rgba(149, 216, 192, 0.1);
+    border-radius: 16px;
+    line-height: 50px;
+    font-size: 17px;
+    font-family: PingFang SC;
+    font-weight: 600;
+    color: rgba(99, 110, 113, 1);
+    &::after {
+      border: none;
+    }
+  }
+  text {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+  }
+}

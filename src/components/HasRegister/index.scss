@@ -1,0 +1,46 @@
+.has-register {
+  width: 375px;
+  height: 554px;
+  box-sizing: border-box;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+
+  & > View {
+    width: 345px;
+    height: 194px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0px 4px 4px 2px rgba(226, 232, 230, 0.1);
+    border-radius: 16px;
+    margin-bottom: 8px;
+    position: relative;
+    & > Text {
+      position: absolute;
+      left: 8px;
+      bottom: 16px;
+      font-size: 20px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 1);
+    }
+    & > View {
+      width: 84px;
+      height: 42px;
+      position: absolute;
+      top: 6px;
+      right: 16px;
+      background: rgba(219, 219, 219, 1);
+      box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      line-height: 42px;
+      font-size: 15px;
+      font-family: PingFang SC;
+      font-weight: 600;
+      color: rgba(99, 110, 113, 1);
+      text-align: center;
+    }
+  }
+}

@@ -1,11 +1,12 @@
 const config = {
   projectName: 'organization-registration',
   date: '2019-8-10',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     '640': 2.34 / 2,
     '750': 1,
-    '828': 1.81 / 2
+    '828': 1.81 / 2,
+    '375': 1 / 2
   },
   sourceRoot: 'src',
   outputRoot: 'dist',

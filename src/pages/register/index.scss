@@ -1,0 +1,52 @@
+.register {
+  width: 375px;
+  height: 667px;
+  background: rgba(250, 251, 251, 1);
+  & > View {
+    &:last-child {
+      width: 375px;
+      height: 603px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+      padding-top: 17px;
+
+      & > text {
+        margin-left: 35px;
+        &:nth-of-type(odd) {
+          font-size: 14px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          color: rgba(119, 119, 119, 1);
+          margin-bottom: 10px;
+        }
+        &:nth-of-type(even) {
+          font-size: 17px;
+          font-family: PingFang SC;
+          font-weight: 600;
+          color: rgba(51, 51, 51, 1);
+          margin-bottom: 22px;
+        }
+        &:nth-last-of-type(1) {
+          margin-bottom: 0px;
+        }
+      }
+      button {
+        width: 345px;
+        height: 50px;
+        background: rgba(154, 230, 199, 1);
+        box-shadow: 0px 2px 4px 2px rgba(149, 216, 192, 0.1);
+        border-radius: 16px;
+        line-height: 50px;
+        font-size: 17px;
+        font-family: PingFang SC;
+        font-weight: 600;
+        color: rgba(99, 110, 113, 1);
+        margin-top: 159px;
+        &::after {
+          border: none;
+        }
+      }
+    }
+  }
+}

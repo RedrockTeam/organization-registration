@@ -1,0 +1,111 @@
+.organization-detail {
+  width: 375px;
+  height: 667px;
+  & > View {
+    &:nth-child(2) {
+      width: 375px;
+      height: 211px;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: 0px 4px 4px 2px rgba(226, 232, 230, 0.1);
+      & > View {
+        display: flex;
+        & > View {
+          width: 375px;
+          height: 211px;
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0px 4px 4px 2px rgba(226, 232, 230, 0.1);
+          flex-shrink: 0;
+        }
+      }
+    }
+    &:nth-child(3) {
+      width: 375px;
+      height: 408px;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 16px 16px 0px 0px;
+      transform: translate(0, -16px);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      & > View {
+        &:nth-child(1) {
+          width: 19px;
+          height: 6px;
+          background: rgba(171, 234, 208, 1);
+          border-radius: 5px;
+          position: absolute;
+          left: 27px;
+          top: 17px;
+        }
+        &:nth-child(2) {
+          width: 19px;
+          height: 6px;
+          background: rgba(171, 234, 208, 1);
+          border-radius: 5px;
+          position: absolute;
+          left: 25px;
+          top: 24px;
+        }
+        &:nth-child(3) {
+          margin-top: 14px;
+          margin-left: 30px;
+          z-index: 1;
+          display: flex;
+          align-items: flex-end;
+
+          text {
+            flex-shrink: 0;
+            margin-right: 14px;
+            font-size: 16px;
+            font-family: PingFang SC;
+            font-weight: 500;
+            color: rgba(175, 175, 175, 1);
+            &:first-child {
+              font-size: 20px;
+              color: rgba(51, 51, 51, 1);
+            }
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+        &:nth-child(4) {
+          margin-top: 16px;
+          font-size: 16px;
+          font-family: PingFang SC;
+          font-weight: 400;
+          color: rgba(85, 85, 85, 1);
+          & > View {
+            display: flex;
+            & > View {
+              flex-shrink: 0;
+              width: 375px;
+              box-sizing: border-box;
+              padding-left: 25px;
+              padding-right: 25px;
+              text-align: justify;
+              text-justify: inter-ideograph;
+              text-indent: 2em;
+            }
+          }
+        }
+      }
+    }
+    button {
+      width: 345px;
+      height: 50px;
+      background: rgba(154, 230, 199, 1);
+      box-shadow: 0px 2px 4px 2px rgba(149, 216, 192, 0.1);
+      border-radius: 16px;
+      margin-top: 94px;
+      line-height: 50px;
+      font-size: 17px;
+      font-family: PingFangSC;
+      font-weight: 500;
+      color: rgba(99, 110, 113, 1);
+      &::after {
+        border: none;
+      }
+    }
+  }
+}

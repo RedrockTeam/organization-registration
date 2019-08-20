@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="27px" viewBox="0 0 18 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>图标/个人信息/选</title>
+    <desc>Created with Sketch.</desc>
+    <g id="组件" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="图标/个人信息/选" transform="translate(-12.000000, -1.000000)">
+            <g transform="translate(21.000000, 14.500000) rotate(-360.000000) translate(-21.000000, -14.500000) translate(12.000000, 2.000000)">
+                <ellipse id="椭圆形" fill="#86EFC3" cx="9.5" cy="9" rx="7.5" ry="8"></ellipse>
+                <path d="M14.6568961,14.6569304 C11.9582571,17.3554813 7.72917002,17.7719482 4.55597895,15.6516362 C1.38278787,13.5313242 0.149272307,9.46477073 1.60980208,5.93892072 C3.07033184,2.41307071 6.81812833,0.409924257 10.5611859,1.1545273 C14.3042435,1.89913034 17,5.18410019 17,9.0004779 C17.0008001,9.7661474 16.8923686,10.5280162 16.6779783,11.2630589" id="路径备份-6" stroke="#636E71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M16,19 C14.5968722,20.1910367 12.8525905,20.9385859 11,21.1428571 L11,24" id="路径备份-7" stroke="#636E71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M2,19 C3.40374499,20.1661876 5.145087,20.9092923 7,21.1337127 L7,24" id="路径备份-8" stroke="#636E71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>
