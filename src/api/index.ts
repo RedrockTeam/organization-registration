@@ -14,25 +14,25 @@ interface RegisterData {
 }
 
 interface GetOpenID {
-  (code: string): Promise<object>
+  (code: string): Promise<any>
 }
 interface UserInfo {
-  (info: UserInfoData): Promise<object>
+  (info: UserInfoData): Promise<any>
 }
 interface UserChoose {
-  (data: RegisterData): Promise<object>
+  (data: RegisterData): Promise<any>
 }
 interface UserSubmit {
-  (data: RegisterData): Promise<object>
+  (data: RegisterData): Promise<any>
 }
 interface UserAllChoose {
-  (): Promise<object>
+  (): Promise<any>
 }
 interface ReadNewInfo {
-  (data: RegisterData): Promise<object>
+  (data: RegisterData): Promise<any>
 }
 interface UserModifyInfo {
-  (info: UserInfoData): Promise<object>
+  (info: UserInfoData): Promise<any>
 }
 
 interface API {
