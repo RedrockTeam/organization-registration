@@ -1,5 +1,6 @@
 // HTTP 工具类
 import Taro from '@tarojs/taro'
+import formatQuery from './formatQuery'
 
 const hostname = ''
 
@@ -26,19 +27,7 @@ export default class http {
   }
 
   // url处理
-  static formatQuery(query) {
-    let params: Array<string> = []
-
-    if (query) {
-      for (let item in query) {
-        let vals = query[item]
-        if (vals !== undefined) {
-          params.push(item + '=' + query[item])
-        }
-      }
-    }
-    return params.length ? '?' + params.join('&') : ''
-  }
+  static formatQuery = formatQuery
 
   // 处理 get 请求
   static get(url, data) {
