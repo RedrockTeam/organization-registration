@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text, Image } from '@tarojs/components'
 
 import './index.scss'
@@ -10,7 +10,7 @@ import hasregister1svg from '../../assets/has-register1.svg'
 import personinfo0svg from '../../assets/person-info0.svg'
 import personinfo1svg from '../../assets/person-info1.svg'
 
-export default class TabBar extends Component {
+export default class TabBar extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {}

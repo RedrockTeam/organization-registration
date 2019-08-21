@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import {View, Text} from '@tarojs/components'
 import './index.scss'
 
@@ -6,7 +6,7 @@ interface Props {
   text: string
 }
 
-export default class Navigation extends Component<Props, {}> {
+export default class Navigation extends PureComponent<Props, {}> {
   render() {
     return (
       <View className='navigation'>

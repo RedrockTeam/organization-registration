@@ -1,4 +1,4 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config } from '@tarojs/taro'
 import { View, Image, Button, Text } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
@@ -24,7 +24,7 @@ interface State {
   organizationList: Array<Organization>,
 }
 
-export default class Main extends Component<{}, State> {
+export default class Main extends PureComponent<{}, State> {
   config: Config = {
     navigationStyle: 'custom'
   }

@@ -1,9 +1,9 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config } from '@tarojs/taro'
 import Information from '../../components/Information'
 
 import './index.scss'
 
-export default class InfoIndex extends Component {
+export default class InfoIndex extends PureComponent {
   config: Config = {
     navigationStyle: 'custom'
   }

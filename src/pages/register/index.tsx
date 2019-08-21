@@ -1,4 +1,4 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config } from '@tarojs/taro'
 import { View, Image, Button, Text } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
@@ -19,7 +19,7 @@ interface State {
   maskIsShow: boolean
 }
 
-export default class Register extends Component<{}, State> {
+export default class Register extends PureComponent<{}, State> {
   config: Config = {
     navigationStyle: 'custom'
   }

@@ -1,10 +1,10 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config } from '@tarojs/taro'
 import { View, Image, Button, Text } from '@tarojs/components'
 import './index.scss'
 import titlepng from '../../assets/title2x.png'
 import sloganpng from '../../assets/slogan2x.png'
 
-export default class Index extends Component {
+export default class Index extends PureComponent {
 
   config: Config = {
     navigationStyle: 'custom',

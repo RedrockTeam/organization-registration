@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
 
 import './index.scss'
@@ -14,7 +14,7 @@ interface State {
   info: Info
 }
 
-export default class PersonInfo extends Component<{}, State> {
+export default class PersonInfo extends PureComponent<{}, State> {
   state: State = {
     info: {
       stu_name: '红小岩',

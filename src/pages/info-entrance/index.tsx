@@ -1,9 +1,9 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config } from '@tarojs/taro'
 import { View, Image, Button, Text } from '@tarojs/components'
 import Information from '../../components/Information'
 import './index.scss'
 
-export default class InfoEntrance extends Component {
+export default class InfoEntrance extends PureComponent {
   config: Config = {
     navigationStyle: 'custom'
   }

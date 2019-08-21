@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text, Button, Image } from '@tarojs/components'
 
 import './index.scss'
@@ -10,7 +10,7 @@ interface Props {
   type: string
 }
 
-export default class Mask extends Component<Props, {}> {
+export default class Mask extends PureComponent<Props, {}> {
   render() {
     return (
       <View className='mask'>

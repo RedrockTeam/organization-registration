@@ -1,23 +1,16 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
 
 import './index.scss'
 
-interface Info {
-  stu_name: string
-  stu_num: string
-  stu_qq: string
-  stu_phone: string
-  department: string
-}
 
 interface State {
   message: string
 }
 
-export default class Result extends Component<{}, State> {
+export default class Result extends PureComponent<{}, State> {
   config: Config = {
     navigationStyle: 'custom'
   }

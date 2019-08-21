@@ -1,4 +1,4 @@
-import Taro, {Component} from '@tarojs/taro'
+import Taro, {PureComponent} from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
 import './index.scss'
@@ -16,7 +16,7 @@ interface State {
   departmentList: Array<department>
 }
 
-export default class HasRegister extends Component<{}, State> {
+export default class HasRegister extends PureComponent<{}, State> {
 
   state = {
     departmentList: [

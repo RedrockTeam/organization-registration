@@ -1,4 +1,4 @@
-import Taro, { Component } from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
 
 import Navigation from '../Navigation'
@@ -15,7 +15,7 @@ interface State {
   infoPageType: string
 }
 
-export default class Information extends Component<Props, State> {
+export default class Information extends PureComponent<Props, State> {
   constructor(props) {
     super(props)
     this.state = {
