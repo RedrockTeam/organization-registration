@@ -3,7 +3,8 @@ import {View, Text} from '@tarojs/components'
 import './index.scss'
 
 interface Props {
-  text: string
+  text: string,
+  enableBack: boolean
 }
 
 export default class Navigation extends PureComponent<Props, {}> {

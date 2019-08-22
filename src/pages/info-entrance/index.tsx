@@ -1,5 +1,4 @@
 import Taro, { PureComponent, Config } from '@tarojs/taro'
-import { View, Image, Button, Text } from '@tarojs/components'
 import Information from '../../components/Information'
 import './index.scss'
 
@@ -20,7 +19,7 @@ export default class InfoEntrance extends PureComponent {
 
   render() {
     return (
-      <Information text='开始报名吧' />
+      <Information pageType='entrance' />
     )
   }
 }

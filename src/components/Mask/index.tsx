@@ -10,13 +10,44 @@ interface Props {
   type: string
 }
 
-export default class Mask extends PureComponent<Props, {}> {
+interface Page {
+  img: string,
+  text: string
+}
+interface PageContent {
+  fail: Page,
+  editsuccess: Page,
+  registersuccess: Page
+}
+interface State {
+  pageContent: PageContent
+}
+
+export default class Mask extends PureComponent<Props, State> {
+  state = {
+    pageContent: {
+      fail: {
+        img: infoLackIconPng,
+        text: '您的信息还没有填写完整哦'
+      },
+      editsuccess: {
+        img: infoRight,
+        text: '修改成功'
+      },
+      registersuccess: {
+        img: infoRight,
+        text: '报名成功，请耐心等待结果'
+      }
+    }
+  }
+
   render() {
+    const page = this.state.pageContent[this.props.type]
     return (
       <View className='mask'>
         <View>
-          <Image src={infoLackIconPng}/>
-          <Text>您的信息还没有填写完整哦</Text>
+          <Image src={page.img}/>
+          <Text>{page.text}</Text>
         </View>
       </View>
     )
