@@ -47,20 +47,20 @@ interface API {
 
 const api: API = {
   getOpenid: code =>
-    http.post('/api/getOpenid', { code }).then(res => {
+    http.post('/getOpenid', { code }).then(res => {
       const jwt = res.header.jwt
       Taro.setStorageSync('Authtoken', jwt)
       return res.data
     }),
-  userinfo: info => http.post('/api/userinfo', info).then(res => res.data),
-  userChoose: data => http.post('/api/userChoose', data).then(res => res.data),
-  userSubmit: data => http.post('/api/userSubmit', data).then(res => res.data),
+  userinfo: info => http.post('/userinfo', info).then(res => res.data),
+  userChoose: data => http.post('/userChoose', data).then(res => res.data),
+  userSubmit: data => http.post('/userSubmit', data).then(res => res.data),
   userAllChoose: () =>
-    http.post('/api/userAllChoose', {}).then(res => res.data),
+    http.post('/userAllChoose', {}).then(res => res.data),
   readNewInfo: data =>
-    http.post('/api/readNewInfo', data).then(res => res.data),
+    http.post('/readNewInfo', data).then(res => res.data),
   userModifyInfo: info =>
-    http.post('/api/userModifyInfo', info).then(res => res.data)
+    http.post('/userModifyInfo', info).then(res => res.data)
 }
 
 export default api

@@ -28,7 +28,7 @@ export default class Mask extends PureComponent<Props, State> {
     pageContent: {
       fail: {
         img: infoLackIconPng,
-        text: '您的信息还没有填写完整哦'
+        text: '请认真检查您填写的信息哦'
       },
       editsuccess: {
         img: infoRight,
