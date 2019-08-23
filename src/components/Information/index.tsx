@@ -5,7 +5,7 @@ import Navigation from '../Navigation'
 import Mask from '../Mask'
 
 import './index.scss'
-import api from '../../api';
+import api from '../../api'
 import formatQuery from '../../utils/formatQuery'
 
 interface StuInfo {
@@ -97,17 +97,11 @@ export default class Information extends PureComponent<Props, State> {
       return
     }
 
-    //防止出现带空格输入
-    for(let key in info) {
-      info[key].replace(/\s/g, '')
-    }
-
-    if(this.props.pageType === 'entrance') {
+    if (this.props.pageType === 'entrance') {
       this.firstRegister(info)
       return
-    }
-    else if(this.props.pageType === 'modify') {
-
+    } else if (this.props.pageType === 'modify') {
+      this.modifyInfo(info)
     }
   }
 
@@ -129,37 +123,47 @@ export default class Information extends PureComponent<Props, State> {
       title: '加载中...'
     })
     const response = await api.userModifyInfo(info)
-    Taro.hideLoading()
-    this.setState({
-      maskIsShow: true,
-      maskType: 'editsuccess'
-    })
-    setTimeout(() => {
-      Taro.redirectTo({
-        url: `pages/main/index${info}&pageindex=PersonInfo`
-      })
-      Taro.showLoading({
-        title: '加载中...'
+    if (response.status === 200) {
+      Taro.hideLoading()
+      this.setState({
+        maskIsShow: true,
+        maskType: 'editsuccess'
       })
       setTimeout(() => {
-        Taro.hideLoading()
+        Taro.redirectTo({
+          url: `pages/main/index${info}&pageindex=PersonInfo`
+        })
+        Taro.showLoading({
+          title: '加载中...'
+        })
+        setTimeout(() => {
+          Taro.hideLoading()
+        }, 2000)
       }, 2000)
-    }, 2000)
+      return
+    }
+    Taro.hideLoading()
   }
 
   judgeInput(info: sendInfo): boolean {
     const chracterTest = new RegExp(/[\u4e00-\u9fa5]+/)
     const numberTest = new RegExp(/\d+/)
-    if(!chracterTest.test(info.stuName)) {
+
+    //防止出现带空格输入
+    for (let key in info) {
+      info[key].replace(/\s/g, '')
+    }
+
+    if (!chracterTest.test(info.stuName)) {
       return false
     }
-    if(!numberTest.test(info.stuNum)) {
+    if (!numberTest.test(info.stuNum) || info.stuNum.length !== 10) {
       return false
     }
-    if(!numberTest.test(info.stuPhone)) {
+    if (!numberTest.test(info.stuPhone) || info.stuPhone.length !== 11) {
       return false
     }
-    if(!numberTest.test(info.stuQQ)) {
+    if (!numberTest.test(info.stuQQ)) {
       return false
     }
     return true
