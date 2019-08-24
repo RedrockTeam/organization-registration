@@ -130,8 +130,9 @@ export default class Information extends PureComponent<Props, State> {
         maskType: 'editsuccess'
       })
       setTimeout(() => {
+        const data = delete response.data.id
         Taro.redirectTo({
-          url: `pages/main/index${info}&pageindex=PersonInfo`
+          url: `pages/main/index${formatQuery(data)}&pageindex=PersonInfo`
         })
         Taro.showLoading({
           title: '加载中...'
