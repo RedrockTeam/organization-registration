@@ -111,7 +111,9 @@ export default class Information extends PureComponent<Props, State> {
     })
     // const response = await api.userinfo(info)
     Taro.redirectTo({
-      url: `/pages/main/index${formatQuery(info)}`
+      url: `/pages/main/index${formatQuery(
+        info
+      )}&from=InfoEntrance&to=PersonInfo`
     })
     setTimeout(() => {
       Taro.hideLoading()
@@ -132,7 +134,9 @@ export default class Information extends PureComponent<Props, State> {
       setTimeout(() => {
         const data = delete response.data.id
         Taro.redirectTo({
-          url: `/pages/main/index${formatQuery(data)}&pageindex=PersonInfo`
+          url: `/pages/main/index${formatQuery(
+            data
+          )}&from=PersonInfo&to=PersonInfo`
         })
         Taro.showLoading({
           title: '加载中...'

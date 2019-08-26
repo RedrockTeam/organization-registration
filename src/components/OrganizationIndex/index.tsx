@@ -40,7 +40,7 @@ export default class OrganizationIndex extends PureComponent<{}, State> {
   }
 
   render() {
-    const organizationLists = this.state.organizationList.map((item, index) => {
+    const organizationLists = this.state.organizationList.map((item) => {
       return (
         <View>
           <Text>{item.name}</Text>

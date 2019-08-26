@@ -47,7 +47,7 @@ export default class Index extends PureComponent<{}, State> {
     } else if (clickType === 'toIndex') {
       const stuInfo = this.state.stuInfo
       Taro.navigateTo({
-        url: `/pages/main/index${formatQuery(stuInfo)}`
+        url: `/pages/main/index${formatQuery(stuInfo)}from=Index&to=OrganizationIndex`
       })
     }
     Taro.showLoading({
