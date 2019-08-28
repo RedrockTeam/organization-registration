@@ -1,5 +1,5 @@
 import Taro, { PureComponent, Config } from '@tarojs/taro'
-import { View, Image, Button, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
 import OrganizationIndex from '../../components/OrganizationIndex'
@@ -7,34 +7,19 @@ import HasRegister from '../../components/HasRegister'
 import PersonInfo from '../../components/PersonInfo'
 import TabBar from '../../components/TabBar'
 
+import { StuInfoContext } from '../../data/context'
+
 import './index.scss'
 
-interface State {
-  pageType: string
-  stu_name: string
-  stu_num: string
-  stu_qq: string
-  stu_phone: string
-}
+export default class Main extends PureComponent {
+  static contextType = StuInfoContext
 
-interface StuInfo {
-  stu_name: string
-  stu_num: string
-  stu_qq: string
-  stu_phone: string
-}
-
-export default class Main extends PureComponent<{}, State> {
   config: Config = {
     navigationStyle: 'custom'
   }
 
   state = {
     pageType: 'PersonInfo',
-    stu_name: '',
-    stu_num: '',
-    stu_qq: '',
-    stu_phone: ''
   }
 
   changePage = (pageType: string) => {
@@ -78,8 +63,6 @@ export default class Main extends PureComponent<{}, State> {
 
   render() {
     const pageType = this.state.pageType
-
-    console.log(pageType)
 
     let text: string
     let pageMain: JSX.Element

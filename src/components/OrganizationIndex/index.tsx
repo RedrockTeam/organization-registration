@@ -1,58 +1,26 @@
 import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
+import { organizationList } from '../../data/static'
+
 import './index.scss'
 
-interface Organization {
-  name: string,
-  desc: string
-}
+export default class OrganizationIndex extends PureComponent {
 
-interface State {
-  organizationList: Array<Organization>
-}
-
-
-export default class OrganizationIndex extends PureComponent<{}, State> {
-  state = {
-    organizationList: [
-      {
-        name: '红岩网校',
-        desc: '红岩网校是学校唯一的互联网学生组织'
-      },
-      {
-        name: '红岩网校',
-        desc: '红岩网校是学校唯一的互联网学生组织'
-      },
-      {
-        name: '红岩网校',
-        desc: '红岩网校是学校唯一的互联网学生组织'
-      },
-      {
-        name: '红岩网校',
-        desc: '红岩网校是学校唯一的互联网学生组织'
-      },
-      {
-        name: '红岩网校',
-        desc: '红岩网校是学校唯一的互联网学生组织'
-      },
-    ]
+  toDetail(sign: string) {
+    Taro.navigateTo({
+      url: `/pages/organization-detail/index?sign=${sign}`
+    })
   }
 
   render() {
-    const organizationLists = this.state.organizationList.map((item) => {
-      return (
-        <View>
-          <Text>{item.name}</Text>
-          <Text>{item.desc}</Text>
-          <View className='arrow'></View>
-        </View>
-      )
-    })
-    return (
-      <View className="organization-index">
-        {organizationLists}
+    const organizationLists = organizationList.map(item => (
+      <View onClick={() => this.toDetail(item.sign)}>
+        <Text>{item.name}</Text>
+        <Text>{item.desc}</Text>
+        <View className="arrow"></View>
       </View>
-    )
+    ))
+    return <View className="organization-index">{organizationLists}</View>
   }
 }

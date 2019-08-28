@@ -6,6 +6,8 @@ import sloganpng from '../../assets/slogan2x.png'
 import api from '../../api'
 import formatQuery from '../../utils/formatQuery'
 
+import { StuInfoContext } from '../../data/context'
+
 interface StuInfo {
   stu_name: string
   stu_num: string
@@ -25,13 +27,13 @@ export default class Index extends PureComponent<{}, State> {
   }
 
   state = {
-    enableClick: false,
-    clickType: '',
+    enableClick: true,
+    clickType: 'toIndex',
     stuInfo: {
-      stu_name: '',
-      stu_num: '',
-      stu_qq: '',
-      stu_phone: ''
+      stu_name: '红小岩',
+      stu_num: '2019213256',
+      stu_qq: '66666666',
+      stu_phone: '15527654589'
     }
   }
 
@@ -47,7 +49,7 @@ export default class Index extends PureComponent<{}, State> {
     } else if (clickType === 'toIndex') {
       const stuInfo = this.state.stuInfo
       Taro.navigateTo({
-        url: `/pages/main/index${formatQuery(stuInfo)}from=Index&to=OrganizationIndex`
+        url: `/pages/main/index?from=Index&to=OrganizationIndex`
       })
     }
     Taro.showLoading({
@@ -96,12 +98,14 @@ export default class Index extends PureComponent<{}, State> {
 
   render() {
     return (
-      <View className="index">
-        <Image src={titlepng} />
-        <Image src={sloganpng} />
-        <Button onClick={this.beginRegister}>开始报名</Button>
-        <Text>第一次登陆需绑定信息哦</Text>
-      </View>
+      <StuInfoContext.Provider value={this.state.stuInfo}>
+        <View className="index">
+          <Image src={titlepng} />
+          <Image src={sloganpng} />
+          <Button onClick={this.beginRegister}>开始报名</Button>
+          <Text>第一次登陆需绑定信息哦</Text>
+        </View>
+      </StuInfoContext.Provider>
     )
   }
 }
