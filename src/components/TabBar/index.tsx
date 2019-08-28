@@ -10,12 +10,11 @@ import hasregister1svg from '../../assets/has-register1.svg'
 import personinfo0svg from '../../assets/person-info0.svg'
 import personinfo1svg from '../../assets/person-info1.svg'
 
-
 interface ChangePage {
   (pageType: string): void
 }
 interface Props {
-  pageType: string,
+  pageType: string
   changePage: ChangePage
 }
 
@@ -26,7 +25,7 @@ interface fontColor {
 interface TabState {
   img: string
   style: fontColor
-  text: string,
+  text: string
   pageType: string
 }
 interface TabStates {
@@ -39,7 +38,6 @@ interface State {
 }
 
 export default class TabBar extends PureComponent<Props, State> {
-
   static defaultProps = {
     pageType: 'OrganizationIndex'
   }
