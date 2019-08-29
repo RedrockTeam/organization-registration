@@ -11,6 +11,41 @@
   align-items: flex-end;
   justify-content: center;
   box-sizing: border-box;
+  position: relative;
+  .arrow {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 60%;
+    opacity: 0.8;
+    z-index: 2;
+    left: 21px;
+    &::after {
+      content: '';
+      width: 10px;
+      height: 2px;
+      border-radius: 2px;
+      background: #9d9d9d;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform-origin: 0 50%;
+      transform: translate(0, -50%) rotate(45deg);
+    }
+
+    &::before {
+      content: '';
+      width: 10px;
+      height: 2px;
+      border-radius: 2px;
+      background: #9d9d9d;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform-origin: 0 50%;
+      transform: translate(0, calc(-50% + 1.4px)) rotate(-45deg);
+    }
+  }
   .navigation-text {
     margin-bottom: 13px;
   }
