@@ -11,6 +11,7 @@
       & > View {
         &:nth-child(2) {
           display: flex;
+          transition-duration: 1s;
           & > View {
             width: 375px;
             height: 211px;
@@ -26,6 +27,7 @@
         position: absolute;
         top: 50%;
         opacity: 0.8;
+        z-index: 2;
         &::after {
           content: '';
           width: 14px;
@@ -97,19 +99,14 @@
           align-items: flex-end;
 
           text {
-            flex-shrink: 0;
-            margin-right: 14px;
+            padding-right: 14px;
             font-size: 16px;
             font-family: PingFang SC;
             font-weight: 500;
             color: rgba(175, 175, 175, 1);
-            &:first-child {
-              font-size: 20px;
-              color: rgba(51, 51, 51, 1);
-            }
-            &:last-child {
-              margin-right: 0;
-            }
+            white-space: nowrap;
+            transition-duration: 1s;
+            transition-timing-function: cubic-bezier(.22,1,0,.92);
           }
         }
         &:nth-child(4) {
@@ -118,8 +115,12 @@
           font-family: PingFang SC;
           font-weight: 400;
           color: rgba(85, 85, 85, 1);
+          transition-duration: 1s;
+          transition-timing-function: cubic-bezier(.22,1,0,.92);
+          overflow: hidden;
           & > View {
             display: flex;
+            // transition-duration: 1s;
             & > View {
               flex-shrink: 0;
               width: 375px;
