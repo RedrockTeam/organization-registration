@@ -10,6 +10,7 @@
       flex-direction: column;
       box-sizing: border-box;
       padding-top: 17px;
+      position: relative;
 
       & > text {
         margin-left: 35px;
@@ -42,7 +43,10 @@
         font-family: PingFang SC;
         font-weight: 600;
         color: rgba(99, 110, 113, 1);
-        margin-top: 159px;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translate(-50%, 0);
         &::after {
           border: none;
         }
