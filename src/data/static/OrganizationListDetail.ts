@@ -20,7 +20,7 @@ interface OrganizationListDetail {
 
 const organizationListDetail: OrganizationListDetail = {
   hongyan: {
-    name: '红岩网校',
+    name: '红岩网校工作站',
     departmentList: [
       {
         name: '产品策划及运营部',

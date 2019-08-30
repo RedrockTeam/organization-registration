@@ -1,52 +1,94 @@
-import Taro, {PureComponent} from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 
 import './index.scss'
 
-interface bgStyle {
-  background: string
+import { posterBg } from '../../data/static'
+
+interface HasRegisterInfo {
+  id: number
+  organization: string
+  department: string
+  info: string
+  time: string
 }
 
-interface department {
-  name: string,
-  bgStyle: bgStyle
+interface HasRegisterList {
+  organization: string
+  department: string
+  status: number
+  info: Array<HasRegisterInfo>
 }
 
-interface State {
-  departmentList: Array<department>
+interface Props {
+  hasRegisterLists: Array<HasRegisterList>
 }
 
-export default class HasRegister extends PureComponent<{}, State> {
-
-  state = {
-    departmentList: [
+export default class HasRegister extends PureComponent<Props, {}> {
+  static defaultProps = {
+    hasRegisterLists: [
       {
-        name: '红岩网校-产品策划及运营部',
-        bgStyle: {
-          background: '#2C547C'
-        }
+        organization: '红岩网校工作站',
+        department: 'Web研发部',
+        status: 0,
+        info: [
+          {
+            id: 1,
+            organization: '红岩网校工作站',
+            department: 'Web研发部',
+            info:
+              '亲爱的yjp同学,你好，你先前的申请的社团组织需要进行一面面试，现将详细面试信息发给你',
+            time: '1545096558331'
+          },
+          {
+            id: 2,
+            organization: '红岩网校工作站',
+            department: 'Web研发部',
+            info:
+              '亲爱的yyy同学,你好，你先前的申请的社团组织需要进行一面面试，现将详细面试信息发给你',
+            time: '1566211679355'
+          }
+        ]
       },
       {
-        name: 'web研发部',
-        bgStyle: {
-          background: '#2C547C'
-        }
+        organization: '红岩网校工作站',
+        department: '移动开发部',
+        status: 0,
+        info: []
+      },
+      {
+        organization: '红岩网校工作站',
+        department: '运维安全部',
+        status: 0,
+        info: []
       }
     ]
   }
-
   render() {
-    const departmentLists = this.state.departmentList.map((item, index) => {
-      return (
-        <View style={item.bgStyle}>
-          <Text>{item.name}</Text>
-          <View>录取结果</View>
-        </View>
-      )
-    })
     return (
-      <View className='has-register'>
-        {departmentLists}
+      <View className="has-register">
+        {this.props.hasRegisterLists.map((item, index) => {
+          const organization = item.organization
+          const department = item.department
+          const bgStyle = posterBg[organization][department]
+
+          return (
+            <View style={bgStyle}>
+              <Text>
+                {organization}-{department}
+              </Text>
+              <View
+                style={
+                  item.info.length >= 1
+                    ? { background: 'rgb(255, 255, 255)' }
+                    : { background: 'rgb(219, 219, 219)' }
+                }
+              >
+                录取结果
+              </View>
+            </View>
+          )
+        })}
       </View>
     )
   }

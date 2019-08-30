@@ -4,9 +4,8 @@ import './index.scss'
 import titlepng from '../../assets/title2x.png'
 import sloganpng from '../../assets/slogan2x.png'
 import api from '../../api'
-import formatQuery from '../../utils/formatQuery'
 
-import { StuInfoContext } from '../../data/context'
+import { StuInfoContext, HasRegisterContext } from '../../data/context'
 
 interface StuInfo {
   stu_name: string
@@ -15,10 +14,26 @@ interface StuInfo {
   stu_phone: string
 }
 
+interface HasRegisterInfo {
+  id: number
+  organization: string
+  department: string
+  info: string
+  time: string
+}
+
+interface HasRegister {
+  organization: string
+  department: string
+  status: number
+  info: Array<HasRegisterInfo>
+}
+
 interface State {
   enableClick: boolean
   clickType: string
   stuInfo: StuInfo
+  hasRegister: Array<HasRegister>
 }
 
 export default class Index extends PureComponent<{}, State> {
@@ -30,11 +45,40 @@ export default class Index extends PureComponent<{}, State> {
     enableClick: true,
     clickType: 'toIndex',
     stuInfo: {
-      stu_name: '红小岩',
-      stu_num: '2019213256',
-      stu_qq: '66666666',
-      stu_phone: '15527654589'
-    }
+      stu_name: '',
+      stu_num: '',
+      stu_qq: '',
+      stu_phone: ''
+    },
+    hasRegister: [
+      {
+        organization: '',
+        department: '',
+        status: 0,
+        info: [
+          {
+            id: 1,
+            organization: '',
+            department: '',
+            info: '',
+            time: ''
+          },
+          {
+            id: 2,
+            organization: '',
+            department: '',
+            info: '',
+            time: ''
+          }
+        ]
+      }
+    ]
+  }
+
+  changeStuInfo = (stuInfo: StuInfo) => {
+    this.setState({
+      stuInfo
+    })
   }
 
   beginRegister() {
@@ -43,12 +87,11 @@ export default class Index extends PureComponent<{}, State> {
     }
     const clickType = this.state.clickType
     if (clickType === 'toInfo') {
-      Taro.navigateTo({
+      Taro.redirectTo({
         url: '/pages/info-entrance/index'
       })
     } else if (clickType === 'toIndex') {
-      const stuInfo = this.state.stuInfo
-      Taro.navigateTo({
+      Taro.redirectTo({
         url: `/pages/main/index?from=Index&to=OrganizationIndex`
       })
     }
@@ -73,11 +116,15 @@ export default class Index extends PureComponent<{}, State> {
           clickType: 'toInfo'
         })
       } else if (info.status === 200) {
-        this.setState({
-          enableClick: true,
-          clickType: 'toIndex',
-          stuInfo: info.data
-        })
+        const response = await api.userAllChoose()
+        if (response.status === 200) {
+          this.setState({
+            enableClick: true,
+            clickType: 'toIndex',
+            stuInfo: info.data,
+            hasRegister: response.data
+          })
+        }
       } else {
         console.log(info)
       }
@@ -98,13 +145,20 @@ export default class Index extends PureComponent<{}, State> {
 
   render() {
     return (
-      <StuInfoContext.Provider value={this.state.stuInfo}>
-        <View className="index">
-          <Image src={titlepng} />
-          <Image src={sloganpng} />
-          <Button onClick={this.beginRegister}>开始报名</Button>
-          <Text>第一次登陆需绑定信息哦</Text>
-        </View>
+      <StuInfoContext.Provider
+        value={{
+          stuInfo: this.state.stuInfo,
+          changeStuInfo: this.changeStuInfo
+        }}
+      >
+        <HasRegisterContext.Provider value={this.state.hasRegister}>
+          <View className="index">
+            <Image src={titlepng} />
+            <Image src={sloganpng} />
+            <Button onClick={this.beginRegister}>开始报名</Button>
+            <Text>第一次登陆需绑定信息哦</Text>
+          </View>
+        </HasRegisterContext.Provider>
       </StuInfoContext.Provider>
     )
   }

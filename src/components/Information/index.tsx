@@ -7,6 +7,7 @@ import Mask from '../Mask'
 import './index.scss'
 import api from '../../api'
 import formatQuery from '../../utils/formatQuery'
+import { StuInfoContext } from '../../data/context'
 
 interface StuInfo {
   stu_name: string
@@ -39,6 +40,8 @@ interface State {
 }
 
 export default class Information extends PureComponent<Props, State> {
+  static contextType = StuInfoContext
+
   state = {
     maskIsShow: false,
     maskType: 'fail',
@@ -78,6 +81,7 @@ export default class Information extends PureComponent<Props, State> {
 
   async submitInfo() {
     const { stu_name, stu_num, stu_qq, stu_phone } = this.state
+
     const info: sendInfo = {
       stuName: stu_name,
       stuNum: stu_num,
@@ -105,22 +109,25 @@ export default class Information extends PureComponent<Props, State> {
     }
   }
 
-  async firstRegister(info) {
+  async firstRegister(info: sendInfo) {
     Taro.showLoading({
       title: '加载中...'
     })
-    // const response = await api.userinfo(info)
-    Taro.redirectTo({
-      url: `/pages/main/index${formatQuery(
-        info
-      )}&from=InfoEntrance&to=PersonInfo`
-    })
-    setTimeout(() => {
-      Taro.hideLoading()
-    }, 2000)
+    const response = await api.userinfo(info)
+    if(response.status === 200) {
+      this.context.changeStuInfo(response.data)
+      Taro.redirectTo({
+        url: `/pages/main/index?from=InfoEntrance&to=PersonInfo`
+      })
+      setTimeout(() => {
+        Taro.hideLoading()
+      }, 2000)
+      return
+    }
+    Taro.hideLoading()
   }
 
-  async modifyInfo(info) {
+  async modifyInfo(info: sendInfo) {
     Taro.showLoading({
       title: '加载中...'
     })
@@ -132,11 +139,11 @@ export default class Information extends PureComponent<Props, State> {
         maskType: 'editsuccess'
       })
       setTimeout(() => {
-        const data = delete response.data.id
+        delete response.data.id
+        const data = response.data
+        this.context.changeStuInfo(data)
         Taro.redirectTo({
-          url: `/pages/main/index${formatQuery(
-            data
-          )}&from=PersonInfo&to=PersonInfo`
+          url: `/pages/main/index?from=PersonInfo&to=PersonInfo`
         })
         Taro.showLoading({
           title: '加载中...'
@@ -172,15 +179,6 @@ export default class Information extends PureComponent<Props, State> {
       return false
     }
     return true
-  }
-
-  componentWillMount() {
-    if (this.props.info) {
-      const defaultValue = Object.assign({}, this.props.info)
-      this.setState({
-        ...defaultValue
-      })
-    }
   }
 
   componentWillUnmount() {

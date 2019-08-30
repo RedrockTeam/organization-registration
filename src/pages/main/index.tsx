@@ -1,4 +1,4 @@
-import Taro, { PureComponent, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config, useContext } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
@@ -7,51 +7,36 @@ import HasRegister from '../../components/HasRegister'
 import PersonInfo from '../../components/PersonInfo'
 import TabBar from '../../components/TabBar'
 
-import { StuInfoContext } from '../../data/context'
+import { HasRegisterContext } from '../../data/context'
 
 import './index.scss'
 
 export default class Main extends PureComponent {
-  static contextType = StuInfoContext
+  static contextType = HasRegisterContext
 
   config: Config = {
     navigationStyle: 'custom'
   }
 
   state = {
-    pageType: 'PersonInfo',
+    pageType: 'PersonInfo'
   }
 
   changePage = (pageType: string) => {
-    console.log(pageType)
     this.setState({
       pageType: pageType
     })
   }
 
-  // componentWillMount() {
-  //   console.log(this.$router.params)
-  //   const params = this.$router.params
+  componentWillMount() {
+    // console.log(this.$router.params)
+    // const params = this.$router.params
+    // const { from, to } = params
 
-  //   // const {from, to, ...stuInfo} = params
-  //   //以下为临时用，从接口拿到数据后格式和这个不一样
-  //   const stuInfo: StuInfo = {
-  //     stu_name: '',
-  //     stu_num: '',
-  //     stu_qq: '',
-  //     stu_phone: ''
-  //   }
-  //   stuInfo.stu_name = params.stuName
-  //   stuInfo.stu_num = params.stuNum
-  //   stuInfo.stu_qq = params.stuQQ
-  //   stuInfo.stu_phone = params.stuPhone
-  //   const { from, to } = params
-
-  //   this.setState({
-  //     pageType: to,
-  //     ...stuInfo
-  //   })
-  // }
+    // this.setState({
+    //   pageType: to,
+    // })
+  }
 
   componentDidMount() {}
 
@@ -63,32 +48,36 @@ export default class Main extends PureComponent {
 
   render() {
     const pageType = this.state.pageType
-
-    let text: string
-    let pageMain: JSX.Element
+    const hasRegister = useContext(HasRegisterContext)
 
     switch (pageType) {
       case 'OrganizationIndex': {
-        text = '报名系统'
-        pageMain = <OrganizationIndex />
-        break
+        return (
+          <View className="main">
+            <Navigation text="报名系统" enableBack={false} />
+            <OrganizationIndex />
+            <TabBar pageType={pageType} changePage={this.changePage} />
+          </View>
+        )
       }
       case 'HasRegister': {
-        text = '已报部门'
-        pageMain = <HasRegister />
-        break
+        return (
+          <View className="main">
+            <Navigation text="已报部门" enableBack={false} />
+            <HasRegister hasRegisterLists={hasRegister} />
+            <TabBar pageType={pageType} changePage={this.changePage} />
+          </View>
+        )
       }
-      default: {
-        text = '个人信息'
-        pageMain = <PersonInfo />
+      case 'PersonInfo': {
+        return (
+          <View className="main">
+            <Navigation text="个人信息" enableBack={false} />
+            <PersonInfo />
+            <TabBar pageType={pageType} changePage={this.changePage} />
+          </View>
+        )
       }
     }
-    return (
-      <View className="main">
-        <Navigation text={text} enableBack={false} />
-        {pageMain}
-        <TabBar pageType={pageType} changePage={this.changePage} />
-      </View>
-    )
   }
 }

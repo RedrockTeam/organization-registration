@@ -1,4 +1,4 @@
-import Taro, { PureComponent } from '@tarojs/taro'
+import Taro, { PureComponent, useContext } from '@tarojs/taro'
 import { View, Text, Button } from '@tarojs/components'
 
 import { StuInfoContext } from '../../data/context'
@@ -6,10 +6,10 @@ import { StuInfoContext } from '../../data/context'
 import './index.scss'
 
 export default class PersonInfo extends PureComponent {
-  static contextType = StuInfoContext
 
   render() {
-    const { stu_name, stu_num, stu_qq, stu_phone } = this.context
+    const stuInfo = useContext(StuInfoContext).stuInfo
+    const { stu_name, stu_num, stu_qq, stu_phone } = stuInfo
 
     return (
       <View className="person-info">

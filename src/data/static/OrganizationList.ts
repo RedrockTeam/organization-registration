@@ -29,6 +29,11 @@ const organizationList: Array<Organization> = [
     sign: 'hongyan',
     name: '红岩网校',
     desc: '红岩网校是学校唯一的互联网学生组织'
+  },
+  {
+    sign: 'hongyan',
+    name: '红岩网校',
+    desc: '红岩网校是学校唯一的互联网学生组织'
   }
 ]
 

@@ -1,5 +1,11 @@
 import Taro from '@tarojs/taro'
 
+interface StuInfo {
+  stu_name: string
+  stu_num: string
+  stu_qq: string
+  stu_phone: string
+}
 const stuInfo = {
   stu_name: '',
   stu_num: '',
@@ -7,6 +13,8 @@ const stuInfo = {
   stu_phone: ''
 }
 
-const StuInfoContext = Taro.createContext(stuInfo)
+const changeStuInfo = (stuInfo: StuInfo) => {}
+
+const StuInfoContext = Taro.createContext({ stuInfo, changeStuInfo })
 
 export default StuInfoContext
