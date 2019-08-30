@@ -43,7 +43,7 @@ export default class Register extends PureComponent<{}, State> {
     const response = await api.userSubmit(data)
     Taro.hideLoading()
     if(response.status === 500) {
-      alert('报名失败')
+      alert('报名失败，请核查自己的个人信息')
     } else if(response.status === 200) {
       this.maskShow()
       setTimeout(() => {
