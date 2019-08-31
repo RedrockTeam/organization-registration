@@ -48,7 +48,7 @@ export default class Main extends PureComponent {
 
   render() {
     const pageType = this.state.pageType
-    const hasRegister = useContext(HasRegisterContext)
+    const { hasRegister, changeStatus } = useContext(HasRegisterContext)
 
     switch (pageType) {
       case 'OrganizationIndex': {
@@ -64,7 +64,7 @@ export default class Main extends PureComponent {
         return (
           <View className="main">
             <Navigation text="已报部门" enableBack={false} />
-            <HasRegister hasRegisterLists={hasRegister} />
+            <HasRegister hasRegisterLists={hasRegister} changeStatus={changeStatus} />
             <TabBar pageType={pageType} changePage={this.changePage} />
           </View>
         )

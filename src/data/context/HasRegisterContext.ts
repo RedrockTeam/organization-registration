@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 
-const HasRegister = [
+const hasRegister = [
   {
     organization: '红岩网校工作站',
     department: 'Web研发部',
@@ -44,6 +44,13 @@ const HasRegister = [
   }
 ]
 
-const HasRegisterContext = Taro.createContext(HasRegister)
+const changeStatus = (oName: string, dName: string) => {}
+const addDepartment = (oName: string, dName: string) => {}
+
+const HasRegisterContext = Taro.createContext({
+  hasRegister,
+  changeStatus,
+  addDepartment
+})
 
 export default HasRegisterContext

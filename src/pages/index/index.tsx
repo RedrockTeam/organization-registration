@@ -81,6 +81,20 @@ export default class Index extends PureComponent<{}, State> {
     })
   }
 
+  changeStatus = (oName: string, dName: string) => {
+    const hasRegister = this.state.hasRegister
+    for(let value of hasRegister) {
+      if(value.organization === oName && value.department === dName) {
+        value.status = 0
+        break
+      }
+    }
+    this.setState({
+      hasRegister
+    })
+  }
+  addDepartment = (oName: string, dName: string) => {}
+
   beginRegister() {
     if (!this.state.enableClick) {
       return
@@ -151,7 +165,13 @@ export default class Index extends PureComponent<{}, State> {
           changeStuInfo: this.changeStuInfo
         }}
       >
-        <HasRegisterContext.Provider value={this.state.hasRegister}>
+        <HasRegisterContext.Provider
+          value={{
+            hasRegister: this.state.hasRegister,
+            changeStatus: this.changeStatus,
+            addDepartment: this.addDepartment
+          }}
+        >
           <View className="index">
             <Image src={titlepng} />
             <Image src={sloganpng} />

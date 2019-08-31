@@ -4,6 +4,7 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 
 import { posterBg } from '../../data/static'
+import api from '../../api'
 
 interface HasRegisterInfo {
   id: number
@@ -20,8 +21,13 @@ interface HasRegisterList {
   info: Array<HasRegisterInfo>
 }
 
+interface ChangeStatus {
+  (oName: string, dName: string): void
+}
+
 interface Props {
-  hasRegisterLists: Array<HasRegisterList>
+  hasRegisterLists: Array<HasRegisterList>,
+  changeStatus: ChangeStatus
 }
 
 export default class HasRegister extends PureComponent<Props, {}> {
@@ -62,8 +68,33 @@ export default class HasRegister extends PureComponent<Props, {}> {
         status: 0,
         info: []
       }
-    ]
+    ],
+    changeStatus: (oName: string, dName: string) => {}
   }
+
+  async changeReadState(
+    oName: string,
+    dName: string,
+    info: Array<HasRegisterInfo>
+  ) {
+    Taro.showLoading({
+      title: '加载中...'
+    })
+    const data = { oName, dName }
+    this.props.changeStatus(oName, dName)
+    const response = await api.readNewInfo(data)
+    if(response.status === 200) {
+      const message = info[info.length - 1]
+      Taro.navigateTo({
+        url: `/pages/result/index?message=${message}`
+      })
+      setTimeout(() => {
+        Taro.hideLoading()
+      }, 2000)
+      return
+    }
+  }
+
   render() {
     return (
       <View className="has-register">
@@ -73,7 +104,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
           const bgStyle = posterBg[organization][department]
 
           return (
-            <View style={bgStyle}>
+            <View style={bgStyle} key={index} >
               <Text>
                 {organization}-{department}
               </Text>
@@ -83,8 +114,12 @@ export default class HasRegister extends PureComponent<Props, {}> {
                     ? { background: 'rgb(255, 255, 255)' }
                     : { background: 'rgb(219, 219, 219)' }
                 }
+                onClick={() =>
+                  this.changeReadState(organization, department, item.info)
+                }
               >
-                录取结果
+                {item.status == 1 ? <View className="point"></View> : null}
+                <Text>录取结果</Text>
               </View>
             </View>
           )
