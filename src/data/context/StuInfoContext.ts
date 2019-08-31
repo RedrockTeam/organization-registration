@@ -7,10 +7,10 @@ interface StuInfo {
   stu_phone: string
 }
 const stuInfo = {
-  stu_name: '',
-  stu_num: '',
-  stu_qq: '',
-  stu_phone: ''
+  stu_name: '个人信息获取失败',
+  stu_num: '个人信息获取失败',
+  stu_qq: '个人信息获取失败',
+  stu_phone: '个人信息获取失败'
 }
 
 const changeStuInfo = (stuInfo: StuInfo) => {}
