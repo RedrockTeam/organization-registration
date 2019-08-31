@@ -22,7 +22,7 @@ export default class Result extends PureComponent<{}, State> {
   render() {
     return (
       <View className="result">
-        <Navigation text="录取结果" />
+        <Navigation text="录取结果" enableBack={true} />
         <View>
           <Text>{this.state.message}</Text>
           <Button>返回</Button>
