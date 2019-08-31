@@ -41,6 +41,15 @@
       font-weight: 600;
       color: rgba(99, 110, 113, 1);
       text-align: center;
+      & > View {
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 104, 123, 1);
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        right: -2px;
+      }
     }
   }
 }
