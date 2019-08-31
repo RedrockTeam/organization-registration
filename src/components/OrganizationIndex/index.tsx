@@ -6,7 +6,6 @@ import { organizationList } from '../../data/static'
 import './index.scss'
 
 export default class OrganizationIndex extends PureComponent {
-
   toDetail(sign: string) {
     Taro.navigateTo({
       url: `/pages/organization-detail/index?sign=${sign}`
@@ -14,8 +13,8 @@ export default class OrganizationIndex extends PureComponent {
   }
 
   render() {
-    const organizationLists = organizationList.map(item => (
-      <View onClick={() => this.toDetail(item.sign)}>
+    const organizationLists = organizationList.map((item, index) => (
+      <View onClick={() => this.toDetail(item.sign)} key={index}>
         <Text>{item.name}</Text>
         <Text>{item.desc}</Text>
         <View className="arrow"></View>
