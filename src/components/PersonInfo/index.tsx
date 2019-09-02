@@ -7,6 +7,19 @@ import './index.scss'
 
 export default class PersonInfo extends PureComponent {
 
+  editInfo() {
+    Taro.navigateTo({
+      url: '/pages/info-index/index?from=PersonInfo'
+    })
+    Taro.showLoading({
+      title: '加载中...'
+    })
+    setTimeout(() => {
+      Taro.hideLoading()
+    }, 2000)
+
+  }
+
   render() {
     const stuInfo = useContext(StuInfoContext).stuInfo
     const { stu_name, stu_num, stu_qq, stu_phone } = stuInfo
@@ -21,7 +34,7 @@ export default class PersonInfo extends PureComponent {
         <Text>{stu_qq}</Text>
         <Text>联系电话</Text>
         <Text>{stu_phone}</Text>
-        <Button>编辑资料</Button>
+        <Button onClick={this.editInfo}>编辑资料</Button>
       </View>
     )
   }

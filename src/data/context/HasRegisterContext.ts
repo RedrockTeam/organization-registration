@@ -45,7 +45,7 @@ const hasRegister = [
 ]
 
 const changeStatus = (oName: string, dName: string) => {}
-const addDepartment = (oName: string, dName: string) => {}
+const addDepartment = (organization: string, department: string) => {}
 
 const HasRegisterContext = Taro.createContext({
   hasRegister,

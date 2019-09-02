@@ -42,7 +42,7 @@ export default class Index extends PureComponent<{}, State> {
   }
 
   state = {
-    enableClick: true,
+    enableClick: false,
     clickType: 'toIndex',
     stuInfo: {
       stu_name: '',
@@ -93,7 +93,19 @@ export default class Index extends PureComponent<{}, State> {
       hasRegister
     })
   }
-  addDepartment = (oName: string, dName: string) => {}
+  addDepartment = (organization: string, department: string) => {
+    const hasRegister = this.state.hasRegister
+    const newRegister: HasRegister = {
+      organization,
+      department,
+      status: 0,
+      info: []
+    }
+    hasRegister.push(newRegister)
+    this.setState({
+      hasRegister
+    })
+  }
 
   beginRegister() {
     if (!this.state.enableClick) {

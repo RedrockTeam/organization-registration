@@ -14,7 +14,7 @@ export default class http {
     const param: any = {
       method: method,
       header: {
-        Authorization: `Bearer ${Authtoken}`
+        Authorization: `${Authtoken}`
       }
     }
 

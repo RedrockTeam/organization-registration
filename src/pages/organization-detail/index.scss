@@ -11,13 +11,14 @@
       & > View {
         &:nth-child(2) {
           display: flex;
-          transition-duration: 1s;
+          transition-duration: .5s;
           & > View {
             width: 375px;
             height: 211px;
             background: rgba(255, 255, 255, 1);
             box-shadow: 0px 4px 4px 2px rgba(226, 232, 230, 0.1);
             flex-shrink: 0;
+            background-size: 100%;
           }
         }
       }
@@ -105,8 +106,12 @@
             font-weight: 500;
             color: rgba(175, 175, 175, 1);
             white-space: nowrap;
-            transition-duration: 1s;
-            transition-timing-function: cubic-bezier(.22,1,0,.92);
+            transition:
+              font-weight 0s,
+              font-size 1s cubic-bezier(0.22, 1, 0, 0.92),
+              color 1s cubic-bezier(0.22, 1, 0, 0.92),
+              width 1s cubic-bezier(0.22, 1, 0, 0.92),
+              padding 1s cubic-bezier(0.22, 1, 0, 0.92);
           }
         }
         &:nth-child(4) {
@@ -115,12 +120,11 @@
           font-family: PingFang SC;
           font-weight: 400;
           color: rgba(85, 85, 85, 1);
-          transition-duration: 1s;
-          transition-timing-function: cubic-bezier(.22,1,0,.92);
           overflow: hidden;
           & > View {
             display: flex;
-            // transition-duration: 1s;
+            transition-duration: .5s;
+            transition-timing-function: cubic-bezier(.19,.74,.26,.87);
             & > View {
               flex-shrink: 0;
               width: 375px;

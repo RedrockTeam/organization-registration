@@ -1,10 +1,10 @@
-import Taro, { PureComponent, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config, useContext } from '@tarojs/taro'
 import { View, Image, Button, Text } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
 import Mask from '../../components/Mask'
 
-import { StuInfoContext } from '../../data/context'
+import { StuInfoContext, HasRegisterContext } from '../../data/context'
 import api from '../../api'
 
 import './index.scss'
@@ -14,8 +14,6 @@ interface State {
 }
 
 export default class Register extends PureComponent<{}, State> {
-  static contextType = StuInfoContext
-
   config: Config = {
     navigationStyle: 'custom'
   }
@@ -32,7 +30,7 @@ export default class Register extends PureComponent<{}, State> {
     this.setState({ maskIsShow: false })
   }
 
-  async register(oName: string, dName: string) {
+  async register(oName: string, dName: string, addDepartment) {
     const data = {
       oName,
       dName
@@ -46,6 +44,7 @@ export default class Register extends PureComponent<{}, State> {
       alert('报名失败，请核查自己的个人信息')
     } else if(response.status === 200) {
       this.maskShow()
+      addDepartment(oName, dName)
       setTimeout(() => {
         this.setState({ maskIsShow: true })
         Taro.redirectTo({
@@ -62,7 +61,9 @@ export default class Register extends PureComponent<{}, State> {
   }
 
   render() {
-    const stuInfo = this.context
+    const { stuInfo } = useContext(StuInfoContext)
+    const { addDepartment } = useContext(HasRegisterContext)
+
     const { organization, department } = this.$router.params
 
     return (
@@ -82,7 +83,7 @@ export default class Register extends PureComponent<{}, State> {
           <Text>
             {organization}-{department}
           </Text>
-          <Button onClick={() => this.register(organization, department)}>
+          <Button onClick={() => this.register(organization, department, addDepartment)}>
             确认提交
           </Button>
         </View>

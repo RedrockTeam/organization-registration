@@ -86,7 +86,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
     if(response.status === 200) {
       const message = info[info.length - 1]
       Taro.navigateTo({
-        url: `/pages/result/index?message=${message}`
+        url: `/pages/result/index?message=${message}&from=HasRegister`
       })
       setTimeout(() => {
         Taro.hideLoading()

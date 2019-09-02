@@ -5,12 +5,13 @@ import './index.scss'
 interface Props {
   text: string
   enableBack: boolean
-  lastPage?: string
 }
 
 export default class Navigation extends PureComponent<Props, {}> {
   backLastPage() {
-
+    Taro.navigateBack({
+      delta: 1
+    })
   }
 
   render() {

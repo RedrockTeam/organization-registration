@@ -39,7 +39,6 @@ interface State {
   startMouse: Mouse
   style: Style
   textStyle: TextStyle
-  rotateAngle: number
   offset: number
   organization: Organization
   departmentIndex: number
@@ -61,7 +60,6 @@ export default class Main extends PureComponent<{}, State> {
     textStyle: {
       transform: 'rotateY(0)'
     },
-    rotateAngle: 0,
     offset: 375,
     organization: {
       name: '红岩网校',
@@ -134,22 +132,13 @@ export default class Main extends PureComponent<{}, State> {
       const offset = this.state.offset
       departmentIndex--
       const transform = -departmentIndex * offset
-      let rotateAngle = this.state.rotateAngle
-      if (rotateAngle === 0) {
-        rotateAngle = 360
-      } else {
-        rotateAngle = 0
-      }
       const style: Style = {
         transform: `translate(${Taro.pxTransform(transform)})`
       }
-      const textStyle: TextStyle = { transform: `rotateY(${rotateAngle}deg)` }
 
       this.setState({
         departmentIndex,
         style,
-        textStyle,
-        rotateAngle
       })
     } else if (clientX - clientXStart < -50) {
       //左滑，显示下一个部门
@@ -163,21 +152,12 @@ export default class Main extends PureComponent<{}, State> {
       departmentIndex++
 
       const transform = -departmentIndex * offset
-      let rotateAngle = this.state.rotateAngle
-      if (rotateAngle === 0) {
-        rotateAngle = 360
-      } else {
-        rotateAngle = 0
-      }
       const style: Style = {
         transform: `translate(${Taro.pxTransform(transform)})`
       }
-      const textStyle: TextStyle = { transform: `rotateY(${rotateAngle}deg)` }
       this.setState({
         departmentIndex,
         style,
-        textStyle,
-        rotateAngle
       })
     }
   }
@@ -228,7 +208,8 @@ export default class Main extends PureComponent<{}, State> {
           name: value.name,
           style: {
             fontSize: Taro.pxTransform(20),
-            color: 'rgba(51, 51, 51, 1)'
+            color: 'rgba(51, 51, 51, 1)',
+            fontWeight: 600
           }
         }
       } else if (index < departmentIndex) {
@@ -255,8 +236,8 @@ export default class Main extends PureComponent<{}, State> {
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
           <View className="arrow arrow-left" />
           <View style={this.state.style}>
-            {posters.map(value => (
-              <View style={value} />
+            {posters.map((value, index) => (
+              <View style={value} key={index} />
             ))}
           </View>
           <View className="arrow arrow-right" />
@@ -266,14 +247,14 @@ export default class Main extends PureComponent<{}, State> {
           <View />
 
           <View className="deparment-title-box">
-            {titles.map(value => (
-              <Text style={value.style}>{value.name}</Text>
+            {titles.map((value, index) => (
+              <Text style={value.style} key={index}>{value.name}</Text>
             ))}
           </View>
-          <View style={this.state.textStyle}>
+          <View>
             <View style={this.state.style}>
-              {introductions.map(value => (
-                <View>{value}</View>
+              {introductions.map((value, index) => (
+                <View key={index}>{value}</View>
               ))}
             </View>
           </View>

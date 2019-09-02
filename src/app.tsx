@@ -8,8 +8,9 @@ class App extends Component {
   config: Config = {
     pages: [
       'pages/main/index',
-      'pages/index/index',
       'pages/organization-detail/index',
+      'pages/index/index',
+
 
       'pages/info-entrance/index',
       'pages/info-index/index',

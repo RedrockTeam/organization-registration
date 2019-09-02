@@ -16,6 +16,7 @@ interface ChangePage {
 interface Props {
   pageType: string
   changePage: ChangePage
+  haveNewMessage?: boolean
 }
 
 interface fontColor {
@@ -138,6 +139,9 @@ export default class TabBar extends PureComponent<Props, State> {
             >
               <Image src={item.img} />
               <Text style={item.style}>{item.text}</Text>
+              {this.props.haveNewMessage && index === 1 ? (
+                <View className="point"></View>
+              ) : null}
             </View>
           )
         })}

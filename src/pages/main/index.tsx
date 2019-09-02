@@ -29,13 +29,12 @@ export default class Main extends PureComponent {
   }
 
   componentWillMount() {
-    // console.log(this.$router.params)
-    // const params = this.$router.params
-    // const { from, to } = params
-
-    // this.setState({
-    //   pageType: to,
-    // })
+    console.log(this.$router.params)
+    const params = this.$router.params
+    const { from, to } = params
+    this.setState({
+      pageType: to,
+    })
   }
 
   componentDidMount() {}
@@ -49,6 +48,13 @@ export default class Main extends PureComponent {
   render() {
     const pageType = this.state.pageType
     const { hasRegister, changeStatus } = useContext(HasRegisterContext)
+    let haveNewMessage: boolean = false
+    for(let value of hasRegister) {
+      if(value.status == 1) {
+        haveNewMessage = true
+        break
+      }
+    }
 
     switch (pageType) {
       case 'OrganizationIndex': {
@@ -64,8 +70,15 @@ export default class Main extends PureComponent {
         return (
           <View className="main">
             <Navigation text="已报部门" enableBack={false} />
-            <HasRegister hasRegisterLists={hasRegister} changeStatus={changeStatus} />
-            <TabBar pageType={pageType} changePage={this.changePage} />
+            <HasRegister
+              hasRegisterLists={hasRegister}
+              changeStatus={changeStatus}
+            />
+            <TabBar
+              pageType={pageType}
+              changePage={this.changePage}
+              haveNewMessage={haveNewMessage}
+            />
           </View>
         )
       }

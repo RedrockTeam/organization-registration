@@ -6,7 +6,6 @@ import Mask from '../Mask'
 
 import './index.scss'
 import api from '../../api'
-import formatQuery from '../../utils/formatQuery'
 import { StuInfoContext } from '../../data/context'
 
 interface StuInfo {
@@ -182,6 +181,11 @@ export default class Information extends PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
+    if(this.props.pageType !== 'entrance') {
+      Taro.redirectTo({
+        url: `/pages/main/index?from=PersonInfo&to=PersonInfo`
+      })
+    }
     this.setState({
       maskIsShow: false
     })
