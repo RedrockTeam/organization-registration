@@ -21,7 +21,6 @@ export default class PersonInfo extends PureComponent {
 
   render() {
     const { stuInfo } = useContext(StuInfoContext)
-    console.log(stuInfo)
     const { stu_name, stu_num, stu_qq, stu_phone } = stuInfo
 
     return (
