@@ -1,9 +1,10 @@
-import Taro, { PureComponent, Config } from '@tarojs/taro'
+import Taro, { PureComponent, Config, useContext } from '@tarojs/taro'
 import { View, Button, Text } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
 
 import { organizationListDetail } from '../../data/static'
+import { HasRegisterContext } from '../../data/context'
 
 import formatQuery from '../../utils/formatQuery'
 
@@ -70,7 +71,7 @@ export default class Main extends PureComponent<{}, State> {
             background: '#2C547C'
           },
           introduction:
-            '挖据用户需求，提出产品功解升级力案推厂网站文化，开展线上线下活动的推广。利庄前媒体中台宣传网校的产品和活动，负资产品荣划，原型设计进行网上的合作共证。'
+            '挖据用户需求，提出产品功解升级力案推厂网站文化，开展线上线下活动的推广。利庄前媒体中台宣传网校的产品和活动，负资产品荣划，原型设计进行网上的合作共证。挖据用户需求，提出产品功解升级力案推厂网站文化，开展线上线下活动的推广。'
         },
         {
           name: '视觉设计部',
@@ -106,7 +107,7 @@ export default class Main extends PureComponent<{}, State> {
         }
       ]
     },
-    departmentIndex: 0
+    departmentIndex: 0,
   }
 
   touchStart(e) {
@@ -138,7 +139,7 @@ export default class Main extends PureComponent<{}, State> {
 
       this.setState({
         departmentIndex,
-        style,
+        style
       })
     } else if (clientX - clientXStart < -50) {
       //左滑，显示下一个部门
@@ -157,7 +158,7 @@ export default class Main extends PureComponent<{}, State> {
       }
       this.setState({
         departmentIndex,
-        style,
+        style
       })
     }
   }
@@ -179,10 +180,12 @@ export default class Main extends PureComponent<{}, State> {
   }
   componentWillMount() {
     const { sign } = this.$router.params
+
     if (sign) {
+      const organization = organizationListDetail[sign]
       this.setState({
         sign,
-        organization: organizationListDetail[sign]
+        organization
       })
     }
   }
@@ -199,7 +202,15 @@ export default class Main extends PureComponent<{}, State> {
     const organization = this.state.organization
     const name = organization.name
     const departmentList = organization.departmentList
+
     const departmentIndex = this.state.departmentIndex
+    const hasRegister = useContext(HasRegisterContext).hasRegister
+    let isRegistered: boolean = false
+    for(let value of hasRegister) {
+      if(value.organization === name && value.department === departmentList[departmentIndex].name) {
+        isRegistered = true
+      }
+    }
 
     const posters = departmentList.map(value => value.posterStyle)
     const titles = departmentList.map((value, index) => {
@@ -248,7 +259,9 @@ export default class Main extends PureComponent<{}, State> {
 
           <View className="deparment-title-box">
             {titles.map((value, index) => (
-              <Text style={value.style} key={index}>{value.name}</Text>
+              <Text style={value.style} key={index}>
+                {value.name}
+              </Text>
             ))}
           </View>
           <View>
@@ -259,9 +272,18 @@ export default class Main extends PureComponent<{}, State> {
             </View>
           </View>
           <Button
-            onClick={() => this.toRegister(name, titles[departmentIndex].name)}
+            onClick={
+              isRegistered
+                ? () => false
+                : () => this.toRegister(name, titles[departmentIndex].name)
+            }
+            style={
+              isRegistered
+                ? { background: 'rgba(218,225,223,1)', color: '#fff' }
+                : { background: 'background: rgba(154, 230, 199, 1)' }
+            }
           >
-            立即报名
+            {isRegistered ? '已报名' : '立即报名'}
           </Button>
         </View>
       </View>

@@ -37,13 +37,16 @@ interface State {
 }
 
 export default class Index extends PureComponent<{}, State> {
+  constructor() {
+    super()
+  }
   config: Config = {
     navigationStyle: 'custom'
   }
 
   state = {
-    enableClick: false,
-    clickType: 'toIndex',
+    enableClick: true,
+    clickType: 'toInfo',
     stuInfo: {
       stu_name: '',
       stu_num: '',
@@ -83,8 +86,8 @@ export default class Index extends PureComponent<{}, State> {
 
   changeStatus = (oName: string, dName: string) => {
     const hasRegister = this.state.hasRegister
-    for(let value of hasRegister) {
-      if(value.organization === oName && value.department === dName) {
+    for (let value of hasRegister) {
+      if (value.organization === oName && value.department === dName) {
         value.status = 0
         break
       }
@@ -113,11 +116,11 @@ export default class Index extends PureComponent<{}, State> {
     }
     const clickType = this.state.clickType
     if (clickType === 'toInfo') {
-      Taro.redirectTo({
+      Taro.navigateTo({
         url: '/pages/info-entrance/index'
       })
     } else if (clickType === 'toIndex') {
-      Taro.redirectTo({
+      Taro.navigateTo({
         url: `/pages/main/index?from=Index&to=OrganizationIndex`
       })
     }
@@ -158,7 +161,7 @@ export default class Index extends PureComponent<{}, State> {
   }
 
   componentWillMount() {
-    // this.login()
+    this.login()
   }
 
   componentDidMount() {}

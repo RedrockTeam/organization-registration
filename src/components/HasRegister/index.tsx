@@ -26,7 +26,7 @@ interface ChangeStatus {
 }
 
 interface Props {
-  hasRegisterLists: Array<HasRegisterList>,
+  hasRegisterLists: Array<HasRegisterList>
   changeStatus: ChangeStatus
 }
 
@@ -83,7 +83,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
     const data = { oName, dName }
     this.props.changeStatus(oName, dName)
     const response = await api.readNewInfo(data)
-    if(response.status === 200) {
+    if (response.status === 200) {
       const message = info[info.length - 1]
       Taro.navigateTo({
         url: `/pages/result/index?message=${message}&from=HasRegister`
@@ -104,7 +104,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
           const bgStyle = posterBg[organization][department]
 
           return (
-            <View style={bgStyle} key={index} >
+            <View style={bgStyle} key={index}>
               <Text>
                 {organization}-{department}
               </Text>
@@ -114,8 +114,15 @@ export default class HasRegister extends PureComponent<Props, {}> {
                     ? { background: 'rgb(255, 255, 255)' }
                     : { background: 'rgb(219, 219, 219)' }
                 }
-                onClick={() =>
-                  this.changeReadState(organization, department, item.info)
+                onClick={
+                  item.info.length >= 1
+                    ? () =>
+                        this.changeReadState(
+                          organization,
+                          department,
+                          item.info
+                        )
+                    : () => false
                 }
               >
                 {item.status == 1 ? <View className="point"></View> : null}

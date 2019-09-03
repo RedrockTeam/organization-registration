@@ -26,16 +26,8 @@ export default class Result extends PureComponent<{}, State> {
     })
   }
 
-  componentWillUnmount() {
-    Taro.redirectTo({
-      url: '/pages/main/index?from=result&to=HasRegister'
-    })
-  }
-
   back() {
-    Taro.redirectTo({
-      url: '/pages/main/index?from=result&to=HasRegister'
-    })
+    Taro.navigateBack()
   }
 
   render() {

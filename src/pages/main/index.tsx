@@ -12,8 +12,6 @@ import { HasRegisterContext } from '../../data/context'
 import './index.scss'
 
 export default class Main extends PureComponent {
-  static contextType = HasRegisterContext
-
   config: Config = {
     navigationStyle: 'custom'
   }
@@ -31,10 +29,12 @@ export default class Main extends PureComponent {
   componentWillMount() {
     console.log(this.$router.params)
     const params = this.$router.params
-    const { from, to } = params
-    this.setState({
-      pageType: to,
-    })
+    if (params.to) {
+      const { to } = params
+      this.setState({
+        pageType: to
+      })
+    }
   }
 
   componentDidMount() {}
@@ -49,8 +49,8 @@ export default class Main extends PureComponent {
     const pageType = this.state.pageType
     const { hasRegister, changeStatus } = useContext(HasRegisterContext)
     let haveNewMessage: boolean = false
-    for(let value of hasRegister) {
-      if(value.status == 1) {
+    for (let value of hasRegister) {
+      if (value.status == 1) {
         haveNewMessage = true
         break
       }

@@ -48,15 +48,15 @@ interface API {
 const api: API = {
   getOpenid: code =>
     http.post('/getOpenid', { code }).then(res => {
-      const jwt = res.header.jwt
+      const jwt = res.header.Authorization
       Taro.setStorageSync('Authtoken', jwt)
       return res.data
     }),
-  userinfo: info => http.post('/userinfo', info).then(res => res.data),
+  userinfo: info => http.post('/userInfo', info).then(res => res.data),
   userChoose: data => http.post('/userChoose', data).then(res => res.data),
   userSubmit: data => http.post('/userSubmit', data).then(res => res.data),
   userAllChoose: () =>
-    http.post('/userAllChoose', {}).then(res => res.data),
+    http.get('/userAllChoose', {}).then(res => res.data),
   readNewInfo: data =>
     http.post('/readNewInfo', data).then(res => res.data),
   userModifyInfo: info =>

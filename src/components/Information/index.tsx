@@ -1,4 +1,4 @@
-import Taro, { PureComponent } from '@tarojs/taro'
+import Taro, { PureComponent, useContext } from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
 
 import Navigation from '../Navigation'
@@ -39,8 +39,6 @@ interface State {
 }
 
 export default class Information extends PureComponent<Props, State> {
-  static contextType = StuInfoContext
-
   state = {
     maskIsShow: false,
     maskType: 'fail',
@@ -78,7 +76,7 @@ export default class Information extends PureComponent<Props, State> {
     })
   }
 
-  async submitInfo() {
+  async submitInfo(changeStuInfo) {
     const { stu_name, stu_num, stu_qq, stu_phone } = this.state
 
     const info: sendInfo = {
@@ -101,20 +99,20 @@ export default class Information extends PureComponent<Props, State> {
     }
 
     if (this.props.pageType === 'entrance') {
-      this.firstRegister(info)
+      this.firstRegister(info, changeStuInfo)
       return
     } else if (this.props.pageType === 'modify') {
-      this.modifyInfo(info)
+      this.modifyInfo(info, changeStuInfo)
     }
   }
 
-  async firstRegister(info: sendInfo) {
+  async firstRegister(info: sendInfo, changeStuInfo) {
     Taro.showLoading({
       title: '加载中...'
     })
     const response = await api.userinfo(info)
     if(response.status === 200) {
-      this.context.changeStuInfo(response.data)
+      changeStuInfo(response.data)
       Taro.redirectTo({
         url: `/pages/main/index?from=InfoEntrance&to=PersonInfo`
       })
@@ -126,7 +124,7 @@ export default class Information extends PureComponent<Props, State> {
     Taro.hideLoading()
   }
 
-  async modifyInfo(info: sendInfo) {
+  async modifyInfo(info: sendInfo, changeStuInfo) {
     Taro.showLoading({
       title: '加载中...'
     })
@@ -140,9 +138,9 @@ export default class Information extends PureComponent<Props, State> {
       setTimeout(() => {
         delete response.data.id
         const data = response.data
-        this.context.changeStuInfo(data)
+        changeStuInfo(data)
         Taro.redirectTo({
-          url: `/pages/main/index?from=PersonInfo&to=PersonInfo`
+          url: `/pages/main/index?from=modify&to=PersonInfo`
         })
         Taro.showLoading({
           title: '加载中...'
@@ -181,18 +179,14 @@ export default class Information extends PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    if(this.props.pageType !== 'entrance') {
-      Taro.redirectTo({
-        url: `/pages/main/index?from=PersonInfo&to=PersonInfo`
-      })
-    }
     this.setState({
       maskIsShow: false
     })
   }
 
   render() {
-    const { stu_name, stu_num, stu_qq, stu_phone } = this.state
+    const { stuInfo, changeStuInfo } = useContext(StuInfoContext)
+    const { stu_name, stu_num, stu_qq, stu_phone } = stuInfo
     return (
       <View className="person-info">
         {this.state.maskIsShow ? <Mask type={this.state.maskType} /> : null}
@@ -232,7 +226,7 @@ export default class Information extends PureComponent<Props, State> {
           onInput={this.changePhone}
         />
         <Text>联系电话务必为常用电话，个人信息直接影响\n报名信息录入！</Text>
-        <Button onClick={this.submitInfo}>
+        <Button onClick={() => this.submitInfo(changeStuInfo)}>
           {this.props.pageType === 'entrance' ? '开始报名吧' : '保存'}
         </Button>
       </View>

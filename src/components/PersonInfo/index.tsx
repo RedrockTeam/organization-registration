@@ -17,11 +17,11 @@ export default class PersonInfo extends PureComponent {
     setTimeout(() => {
       Taro.hideLoading()
     }, 2000)
-
   }
 
   render() {
-    const stuInfo = useContext(StuInfoContext).stuInfo
+    const { stuInfo } = useContext(StuInfoContext)
+    console.log(stuInfo)
     const { stu_name, stu_num, stu_qq, stu_phone } = stuInfo
 
     return (

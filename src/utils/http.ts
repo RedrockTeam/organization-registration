@@ -2,7 +2,7 @@
 import Taro from '@tarojs/taro'
 import formatQuery from './formatQuery'
 
-const hostname = ''
+const hostname = 'https://hongyan.cqupt.edu.cn/234/registration'
 
 export default class http {
   static async request(method, url, data) {

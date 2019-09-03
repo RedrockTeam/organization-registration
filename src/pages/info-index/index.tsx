@@ -20,7 +20,7 @@ export default class InfoIndex extends PureComponent {
 
   render() {
     return (
-      <Information text='保存' />
+      <Information pageType='modify' />
     )
   }
 }
