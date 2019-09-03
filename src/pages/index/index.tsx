@@ -45,8 +45,8 @@ export default class Index extends PureComponent<{}, State> {
   }
 
   state = {
-    enableClick: true,
-    clickType: 'toInfo',
+    enableClick: false,
+    clickType: 'toIndex',
     stuInfo: {
       stu_name: '',
       stu_num: '',
