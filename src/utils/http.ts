@@ -18,7 +18,7 @@ export default class http {
       }
     }
 
-    url = `${hostname}${url}${this.formatQuery(data)}`
+    url = encodeURI(`${hostname}${url}${this.formatQuery(data)}`)
     param['url'] = url
 
     return Taro.request(param).then(response => {
