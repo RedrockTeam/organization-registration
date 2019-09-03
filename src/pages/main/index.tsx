@@ -27,7 +27,6 @@ export default class Main extends PureComponent {
   }
 
   componentWillMount() {
-    console.log(this.$router.params)
     const params = this.$router.params
     if (params.to) {
       const { to } = params
