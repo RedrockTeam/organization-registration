@@ -114,7 +114,7 @@ export default class Information extends PureComponent<Props, State> {
     if(response.status === 200) {
       changeStuInfo(response.data)
       Taro.redirectTo({
-        url: `/pages/main/index?from=InfoEntrance&to=PersonInfo`
+        url: `/pages/main/index?from=InfoEntrance&to=OrganizationIndex`
       })
       setTimeout(() => {
         Taro.hideLoading()
@@ -196,6 +196,7 @@ export default class Information extends PureComponent<Props, State> {
         />
         <Text>姓名</Text>
         <Input
+          type="text"
           placeholder="点击输入您的真实姓名"
           placeholderClass="input-p"
           value={stu_name}
