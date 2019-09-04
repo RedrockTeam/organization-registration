@@ -1,5 +1,5 @@
 import Taro, { PureComponent, Config, useContext } from '@tarojs/taro'
-import { View, Image, Button, Text } from '@tarojs/components'
+import { View, Button, Text } from '@tarojs/components'
 
 import Navigation from '../../components/Navigation'
 import Mask from '../../components/Mask'
@@ -10,17 +10,19 @@ import api from '../../api'
 import './index.scss'
 
 interface State {
-  maskIsShow: boolean
+  maskIsShow: boolean,
+  enableRegister: boolean
 }
 
-export default class Register extends PureComponent<{}, State> {
+export default class Register extends PureComponent<{}, State> {\
   config: Config = {
     navigationStyle: 'custom',
     disableScroll: true
   }
 
   state = {
-    maskIsShow: false
+    maskIsShow: false,
+    enableRegister: true
   }
 
   maskShow(): void {
@@ -32,6 +34,13 @@ export default class Register extends PureComponent<{}, State> {
   }
 
   async register(oName: string, dName: string, addDepartment) {
+    if(!this.state.enableRegister) {
+      return
+    }
+
+    this.setState({
+      enableRegister: false
+    })
     const data = {
       oName,
       dName
@@ -43,7 +52,13 @@ export default class Register extends PureComponent<{}, State> {
     Taro.hideLoading()
     if(response.status === 500) {
       alert('报名失败，请核查自己的个人信息')
+      this.setState({
+        enableRegister: true
+      })
     } else if(response.status === 200) {
+      this.setState({
+        enableRegister: true
+      })
       this.maskShow()
       addDepartment(oName, dName)
       setTimeout(() => {
