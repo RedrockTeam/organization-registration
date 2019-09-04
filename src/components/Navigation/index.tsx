@@ -18,7 +18,9 @@ export default class Navigation extends PureComponent<Props, {}> {
     return (
       <View className="navigation">
         {this.props.enableBack ? (
-          <View className="arrow" onClick={this.backLastPage} />
+          <View className='arrow-box' onClick={this.backLastPage}>
+            <View className="arrow" />
+          </View>
         ) : null}
         <Text className="navigation-text">{this.props.text}</Text>
       </View>

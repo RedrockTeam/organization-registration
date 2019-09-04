@@ -12,14 +12,18 @@
   justify-content: center;
   box-sizing: border-box;
   position: relative;
+  .arrow-box {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+  }
   .arrow {
     width: 10px;
     height: 10px;
-    position: absolute;
-    top: 60%;
     opacity: 0.8;
     z-index: 2;
-    left: 21px;
     &::after {
       content: '';
       width: 10px;
