@@ -6,7 +6,6 @@ import Mask from '../Mask'
 
 import './index.scss'
 import api from '../../api'
-import { StuInfoContext } from '../../data/context'
 
 interface StuInfo {
   stu_name: string
@@ -22,10 +21,15 @@ interface sendInfo {
   stuPhone: string
 }
 
+interface ChangeStuInfo {
+  (stuInfo: StuInfo): void
+}
+
 //pageType为entrance代表是初始信息登记页，为modify代表是个人信息修改页
 interface Props {
   pageType: string
-  info?: StuInfo
+  stuInfo: StuInfo
+  changeStuInfo: ChangeStuInfo
 }
 
 interface State {
@@ -111,7 +115,7 @@ export default class Information extends PureComponent<Props, State> {
       title: '加载中...'
     })
     const response = await api.userinfo(info)
-    if(response.status === 200) {
+    if (response.status === 200) {
       changeStuInfo(response.data)
       Taro.redirectTo({
         url: `/pages/main/index?from=InfoEntrance&to=OrganizationIndex`
@@ -178,6 +182,16 @@ export default class Information extends PureComponent<Props, State> {
     return true
   }
 
+  componentWillMount() {
+    const { stu_name, stu_num, stu_qq, stu_phone } = this.props.stuInfo
+    this.setState({
+      stu_name,
+      stu_num,
+      stu_qq,
+      stu_phone
+    })
+  }
+
   componentWillUnmount() {
     this.setState({
       maskIsShow: false
@@ -185,8 +199,7 @@ export default class Information extends PureComponent<Props, State> {
   }
 
   render() {
-    const { stuInfo, changeStuInfo } = useContext(StuInfoContext)
-    const { stu_name, stu_num, stu_qq, stu_phone } = stuInfo
+    const { stu_name, stu_num, stu_qq, stu_phone } = this.state
     return (
       <View className="person-info">
         {this.state.maskIsShow ? <Mask type={this.state.maskType} /> : null}
@@ -227,7 +240,7 @@ export default class Information extends PureComponent<Props, State> {
           onInput={this.changePhone}
         />
         <Text>联系电话务必为常用电话，个人信息直接影响\n报名信息录入！</Text>
-        <Button onClick={() => this.submitInfo(changeStuInfo)}>
+        <Button onClick={() => this.submitInfo(this.props.changeStuInfo)}>
           {this.props.pageType === 'entrance' ? '开始报名吧' : '保存'}
         </Button>
       </View>
