@@ -248,7 +248,7 @@ export default class Main extends PureComponent<{}, State> {
           <View className="arrow arrow-left" />
           <View style={this.state.style}>
             {posters.map((value, index) => (
-              <View style={value} key={index} />
+              <View style={value} key={`poster-${index}`} />
             ))}
           </View>
           <View className="arrow arrow-right" />
@@ -259,7 +259,7 @@ export default class Main extends PureComponent<{}, State> {
 
           <View className="deparment-title-box">
             {titles.map((value, index) => (
-              <Text style={value.style} key={index}>
+              <Text style={value.style} key={`title-${index}`}>
                 {value.name}
               </Text>
             ))}
@@ -267,7 +267,7 @@ export default class Main extends PureComponent<{}, State> {
           <View>
             <View style={this.state.style}>
               {introductions.map((value, index) => (
-                <View key={index}>{value}</View>
+                <View key={`introduction-${index}`}>{value}</View>
               ))}
             </View>
           </View>

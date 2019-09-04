@@ -104,7 +104,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
           const bgStyle = posterBg[organization][department]
 
           return (
-            <View style={bgStyle} key={index}>
+            <View style={bgStyle} key={`hasRegister-${index}`}>
               <Text>
                 {organization}-{department}
               </Text>

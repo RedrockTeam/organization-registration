@@ -14,7 +14,7 @@ export default class OrganizationIndex extends PureComponent {
 
   render() {
     const organizationLists = organizationList.map((item, index) => (
-      <View onClick={() => this.toDetail(item.sign)} key={index}>
+      <View onClick={() => this.toDetail(item.sign)} key={`organization-${index}`}>
         <Text>{item.name}</Text>
         <Text>{item.desc}</Text>
         <View className="arrow"></View>

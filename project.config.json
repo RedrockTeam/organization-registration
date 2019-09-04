@@ -1,6 +1,6 @@
 {
   "miniprogramRoot": "./dist",
-  "projectname": "organization-registration",
+  "projectname": "青春邮约",
   "description": "基于微信小程序的校级组织报名系统.",
   "appid": "wx51c8e3c6a32c81f1",
   "setting": {

@@ -135,7 +135,7 @@ export default class TabBar extends PureComponent<Props, State> {
           return (
             <View
               onClick={() => this.props.changePage(item.pageType)}
-              key={index}
+              key={`tabBar-${index}`}
             >
               <Image src={item.img} />
               <Text style={item.style}>{item.text}</Text>
