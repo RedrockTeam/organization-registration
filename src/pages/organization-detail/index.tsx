@@ -47,7 +47,8 @@ interface State {
 
 export default class Main extends PureComponent<{}, State> {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   state = {

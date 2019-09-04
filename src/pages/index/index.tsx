@@ -37,11 +37,9 @@ interface State {
 }
 
 export default class Index extends PureComponent<{}, State> {
-  constructor() {
-    super()
-  }
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   state = {
@@ -53,29 +51,7 @@ export default class Index extends PureComponent<{}, State> {
       stu_qq: '',
       stu_phone: ''
     },
-    hasRegister: [
-      {
-        organization: '',
-        department: '',
-        status: 0,
-        info: [
-          {
-            id: 1,
-            organization: '',
-            department: '',
-            info: '',
-            time: ''
-          },
-          {
-            id: 2,
-            organization: '',
-            department: '',
-            info: '',
-            time: ''
-          }
-        ]
-      }
-    ]
+    hasRegister: []
   }
 
   changeStuInfo = (stuInfo: StuInfo) => {

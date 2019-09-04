@@ -13,7 +13,8 @@ import './index.scss'
 
 export default class Main extends PureComponent {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   state = {

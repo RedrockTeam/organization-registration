@@ -5,7 +5,8 @@ import './index.scss'
 
 export default class InfoIndex extends PureComponent {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   componentWillMount() {}

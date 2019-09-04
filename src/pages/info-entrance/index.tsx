@@ -4,7 +4,8 @@ import './index.scss'
 
 export default class InfoEntrance extends PureComponent {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   componentWillMount() {}
