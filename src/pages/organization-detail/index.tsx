@@ -43,6 +43,7 @@ interface State {
   offset: number
   organization: Organization
   departmentIndex: number
+  enableMove: boolean
 }
 
 export default class Main extends PureComponent<{}, State> {
@@ -109,6 +110,7 @@ export default class Main extends PureComponent<{}, State> {
       ]
     },
     departmentIndex: 0,
+    enableMove: true
   }
 
   touchStart(e) {
@@ -122,6 +124,9 @@ export default class Main extends PureComponent<{}, State> {
   }
 
   touchEnd(e) {
+    if (!this.state.enableMove) {
+      return
+    }
     const { clientX } = e.changedTouches[0]
     const clientXStart = this.state.startMouse.clientX
     if (clientX - clientXStart > 50) {
@@ -140,8 +145,14 @@ export default class Main extends PureComponent<{}, State> {
 
       this.setState({
         departmentIndex,
-        style
+        style,
+        enableMove: false
       })
+      setTimeout(() => {
+        this.setState({
+          enableMove: true
+        })
+      }, 500)
     } else if (clientX - clientXStart < -50) {
       //左滑，显示下一个部门
       let departmentIndex = this.state.departmentIndex
@@ -159,9 +170,37 @@ export default class Main extends PureComponent<{}, State> {
       }
       this.setState({
         departmentIndex,
-        style
+        style,
+        enableMove: false
       })
+      setTimeout(() => {
+        this.setState({
+          enableMove: true
+        })
+      }, 500)
     }
+  }
+
+  moveTo(index: number) {
+    if (!this.state.enableMove) {
+      return
+    }
+    const departmentIndex = index
+    const offset = this.state.offset
+    const transform = -departmentIndex * offset
+    const style: Style = {
+      transform: `translate(${Taro.pxTransform(transform)})`
+    }
+    this.setState({
+      enableMove: false,
+      departmentIndex: index,
+      style
+    })
+    setTimeout(() => {
+      this.setState({
+        enableMove: true
+      })
+    }, 500)
   }
 
   toRegister(organization: string, department: string) {
@@ -207,8 +246,11 @@ export default class Main extends PureComponent<{}, State> {
     const departmentIndex = this.state.departmentIndex
     const hasRegister = useContext(HasRegisterContext).hasRegister
     let isRegistered: boolean = false
-    for(let value of hasRegister) {
-      if(value.organization === name && value.department === departmentList[departmentIndex].name) {
+    for (let value of hasRegister) {
+      if (
+        value.organization === name &&
+        value.department === departmentList[departmentIndex].name
+      ) {
         isRegistered = true
       }
     }
@@ -246,13 +288,13 @@ export default class Main extends PureComponent<{}, State> {
       <View className="organization-detail">
         <Navigation text={name} enableBack={true} />
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
-          <View className="arrow arrow-left" />
+          {/* <View className="arrow arrow-left" /> */}
           <View style={this.state.style}>
             {posters.map((value, index) => (
               <View style={value} key={`poster-${index}`} />
             ))}
           </View>
-          <View className="arrow arrow-right" />
+          {/* <View className="arrow arrow-right" /> */}
         </View>
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
           <View />
@@ -260,7 +302,11 @@ export default class Main extends PureComponent<{}, State> {
 
           <View className="deparment-title-box">
             {titles.map((value, index) => (
-              <Text style={value.style} key={`title-${index}`}>
+              <Text
+                style={value.style}
+                key={`title-${index}`}
+                onClick={() => this.moveTo(index)}
+              >
                 {value.name}
               </Text>
             ))}
