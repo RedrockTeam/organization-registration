@@ -124,61 +124,70 @@ export default class Main extends PureComponent<{}, State> {
   }
 
   touchEnd(e) {
-    if (!this.state.enableMove) {
-      return
-    }
     const { clientX } = e.changedTouches[0]
     const clientXStart = this.state.startMouse.clientX
     if (clientX - clientXStart > 50) {
       //右滑，显示上一个部门
-      let departmentIndex = this.state.departmentIndex
-      if (departmentIndex <= 0) {
-        return
-      }
-
-      const offset = this.state.offset
-      departmentIndex--
-      const transform = -departmentIndex * offset
-      const style: Style = {
-        transform: `translate(${Taro.pxTransform(transform)})`
-      }
-
-      this.setState({
-        departmentIndex,
-        style,
-        enableMove: false
-      })
-      setTimeout(() => {
-        this.setState({
-          enableMove: true
-        })
-      }, 500)
+      this.lastDepartment()
     } else if (clientX - clientXStart < -50) {
       //左滑，显示下一个部门
-      let departmentIndex = this.state.departmentIndex
-      const length = this.state.organization.departmentList.length
-      if (departmentIndex >= length - 1) {
-        return
-      }
-
-      const offset = this.state.offset
-      departmentIndex++
-
-      const transform = -departmentIndex * offset
-      const style: Style = {
-        transform: `translate(${Taro.pxTransform(transform)})`
-      }
-      this.setState({
-        departmentIndex,
-        style,
-        enableMove: false
-      })
-      setTimeout(() => {
-        this.setState({
-          enableMove: true
-        })
-      }, 500)
+      this.nextDepartment()
     }
+  }
+
+  nextDepartment() {
+    if (!this.state.enableMove) {
+      return
+    }
+    let departmentIndex = this.state.departmentIndex
+    const length = this.state.organization.departmentList.length
+    if (departmentIndex >= length - 1) {
+      return
+    }
+    departmentIndex++
+    const offset = this.state.offset
+    const transform = -departmentIndex * offset
+    const style: Style = {
+      transform: `translate(${Taro.pxTransform(transform)})`
+    }
+    this.setState({
+      departmentIndex,
+      style,
+      enableMove: false
+    })
+    setTimeout(() => {
+      this.setState({
+        enableMove: true
+      })
+    }, 500)
+  }
+
+  lastDepartment() {
+    if (!this.state.enableMove) {
+      return
+    }
+    let departmentIndex = this.state.departmentIndex
+    if (departmentIndex <= 0) {
+      return
+    }
+
+    const offset = this.state.offset
+    departmentIndex--
+    const transform = -departmentIndex * offset
+    const style: Style = {
+      transform: `translate(${Taro.pxTransform(transform)})`
+    }
+
+    this.setState({
+      departmentIndex,
+      style,
+      enableMove: false
+    })
+    setTimeout(() => {
+      this.setState({
+        enableMove: true
+      })
+    }, 500)
   }
 
   moveTo(index: number) {
@@ -288,16 +297,16 @@ export default class Main extends PureComponent<{}, State> {
       <View className="organization-detail">
         <Navigation text={name} enableBack={true} />
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
-          <View className="arrow arrow-left" />
+          <View className="arrow arrow-left" onClick={this.lastDepartment} />
           <View style={this.state.style}>
             {posters.map((value, index) => (
               <View style={value} key={`poster-${index}`}>
-                <View></View>
-                <View></View>
+                <View onClick={this.lastDepartment}></View>
+                <View onClick={this.nextDepartment}></View>
               </View>
             ))}
           </View>
-          <View className="arrow arrow-right" />
+          <View className="arrow arrow-right" onClick={this.nextDepartment} />
         </View>
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
           <View />
