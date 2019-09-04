@@ -288,13 +288,16 @@ export default class Main extends PureComponent<{}, State> {
       <View className="organization-detail">
         <Navigation text={name} enableBack={true} />
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
-          {/* <View className="arrow arrow-left" /> */}
+          <View className="arrow arrow-left" />
           <View style={this.state.style}>
             {posters.map((value, index) => (
-              <View style={value} key={`poster-${index}`} />
+              <View style={value} key={`poster-${index}`}>
+                <View></View>
+                <View></View>
+              </View>
             ))}
           </View>
-          {/* <View className="arrow arrow-right" /> */}
+          <View className="arrow arrow-right" />
         </View>
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
           <View />

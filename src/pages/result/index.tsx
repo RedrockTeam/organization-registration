@@ -7,7 +7,8 @@ import './index.scss'
 
 
 interface State {
-  message: string
+  message: string,
+  organization: string
 }
 
 export default class Result extends PureComponent<{}, State> {
@@ -18,12 +19,14 @@ export default class Result extends PureComponent<{}, State> {
 
   state = {
     message: '您好，您已成功报名红岩网校视觉设计部。请于9月12日-18日8:00-20:00至太极操场西三门三楼（红岩网校工作站b区）参与面试。预祝您面试顺利，视觉设计部期待您的加入。',
+    organization: '红岩网校工作站'
   }
 
   componentWillMount() {
-    const message = this.$router.params.message
+    const { message, organization } = this.$router.params
     this.setState({
-      message
+      message,
+      organization
     })
   }
 
@@ -37,6 +40,7 @@ export default class Result extends PureComponent<{}, State> {
         <Navigation text="录取结果" enableBack={true} />
         <View>
           <Text>{this.state.message}</Text>
+          <Text>{this.state.organization}</Text>
           <Button onClick={this.back}>返回</Button>
         </View>
       </View>

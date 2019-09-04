@@ -48,9 +48,9 @@ export default class HasRegister extends PureComponent<Props, {}> {
     this.props.changeStatus(oName, dName)
     const response = await api.readNewInfo(data)
     if (response.status === 200) {
-      const message = info[info.length - 1]
+      const message = info[info.length - 1].info
       Taro.navigateTo({
-        url: `/pages/result/index?message=${message}&from=HasRegister`
+        url: `/pages/result/index?message=${message}&organization=${oName}&from=HasRegister`
       })
       setTimeout(() => {
         Taro.hideLoading()
