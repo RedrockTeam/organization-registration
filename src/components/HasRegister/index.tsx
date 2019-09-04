@@ -32,8 +32,7 @@ interface Props {
 
 export default class HasRegister extends PureComponent<Props, {}> {
   static defaultProps = {
-    hasRegisterLists: [
-    ],
+    hasRegisterLists: [],
     changeStatus: (oName: string, dName: string) => {}
   }
 
@@ -63,39 +62,44 @@ export default class HasRegister extends PureComponent<Props, {}> {
   render() {
     return (
       <View className="has-register">
-        {this.props.hasRegisterLists.map((item, index) => {
-          const organization = item.organization
-          const department = item.department
-          const bgStyle = posterBg[organization][department]
+        {this.props.hasRegisterLists.length > 0 ? (
+          this.props.hasRegisterLists.map((item, index) => {
+            const organization = item.organization
+            const department = item.department
+            const bgStyle = posterBg[organization][department]
 
-          return (
-            <View style={bgStyle} key={`hasRegister-${index}`}>
-              <Text>
-                {organization}-{department}
-              </Text>
-              <View
-                style={
-                  item.info.length >= 1
-                    ? { background: 'rgb(255, 255, 255)' }
-                    : { background: 'rgb(219, 219, 219)' }
-                }
-                onClick={
-                  item.info.length >= 1
-                    ? () =>
-                        this.changeReadState(
-                          organization,
-                          department,
-                          item.info
-                        )
-                    : () => false
-                }
-              >
-                {item.status == 1 ? <View className="point"></View> : null}
-                <Text>录取结果</Text>
+            return (
+              <View style={bgStyle} key={`hasRegister-${index}`}>
+                <Text>
+                  {organization}-{department}
+                </Text>
+                <View
+                  style={
+                    item.info.length >= 1
+                      ? { background: 'rgb(255, 255, 255)' }
+                      : { background: 'rgb(219, 219, 219)' }
+                  }
+                  onClick={
+                    item.info.length >= 1
+                      ? () =>
+                          this.changeReadState(
+                            organization,
+                            department,
+                            item.info
+                          )
+                      : () => false
+                  }
+                >
+                  {item.status == 1 ? <View className="point"></View> : null}
+                  <Text>录取结果</Text>
+                </View>
+                <View className="department-mask"></View>
               </View>
-            </View>
-          )
-        })}
+            )
+          })
+        ) : (
+          <Text>您还没有报名任何部门哦</Text>
+        )}
       </View>
     )
   }
