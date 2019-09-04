@@ -11,7 +11,7 @@
       position: relative;
       overflow: hidden;
       & > View {
-        &:nth-child(2) {
+        &:nth-child(1) {
           display: flex;
           transition-duration: .5s;
           & > View {
@@ -24,48 +24,48 @@
           }
         }
       }
-      .arrow {
-        width: 10px;
-        height: 10px;
-        position: absolute;
-        top: 50%;
-        opacity: 0.8;
-        z-index: 2;
-        &::after {
-          content: '';
-          width: 14px;
-          height: 3px;
-          border-radius: 3px;
-          background: #ffffff;
-          position: absolute;
-          top: 50%;
-          right: 0;
-          transform-origin: 0 50%;
-          transform: translate(0, -50%) rotate(45deg);
-        }
+    //   .arrow {
+    //     width: 10px;
+    //     height: 10px;
+    //     position: absolute;
+    //     top: 50%;
+    //     opacity: 0.8;
+    //     z-index: 2;
+    //     &::after {
+    //       content: '';
+    //       width: 14px;
+    //       height: 3px;
+    //       border-radius: 3px;
+    //       background: #ffffff;
+    //       position: absolute;
+    //       top: 50%;
+    //       right: 0;
+    //       transform-origin: 0 50%;
+    //       transform: translate(0, -50%) rotate(45deg);
+    //     }
 
-        &::before {
-          content: '';
-          width: 14px;
-          height: 3px;
-          border-radius: 3px;
-          background: #ffffff;
-          position: absolute;
-          top: 50%;
-          right: 0;
-          transform-origin: 0 50%;
-          transform: translate(0, calc(-50% + 2.1px)) rotate(-45deg);
-        }
-      }
-      .arrow-left {
-        left: 20px;
-        transform: translate(0, -50%);
-      }
-      .arrow-right {
-        right: 20px;
-        transform: translate(0, -50%) rotate(180deg);
-      }
-    }
+    //     &::before {
+    //       content: '';
+    //       width: 14px;
+    //       height: 3px;
+    //       border-radius: 3px;
+    //       background: #ffffff;
+    //       position: absolute;
+    //       top: 50%;
+    //       right: 0;
+    //       transform-origin: 0 50%;
+    //       transform: translate(0, calc(-50% + 2.1px)) rotate(-45deg);
+    //     }
+    //   }
+    //   .arrow-left {
+    //     left: 20px;
+    //     transform: translate(0, -50%);
+    //   }
+    //   .arrow-right {
+    //     right: 20px;
+    //     transform: translate(0, -50%) rotate(180deg);
+    //   }
+    // }
     &:nth-child(3) {
       width: 375px;
       height: 408px;
