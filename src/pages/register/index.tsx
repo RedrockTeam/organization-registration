@@ -15,7 +15,8 @@ interface State {
 
 export default class Register extends PureComponent<{}, State> {
   config: Config = {
-    navigationStyle: 'custom'
+    navigationStyle: 'custom',
+    disableScroll: true
   }
 
   state = {
@@ -47,7 +48,7 @@ export default class Register extends PureComponent<{}, State> {
       addDepartment(oName, dName)
       setTimeout(() => {
         this.setState({ maskIsShow: true })
-        Taro.redirectTo({
+        Taro.reLaunch({
           url: '/pages/main/index?from=register&to=OrganizationIndex'
         })
         Taro.showLoading({
