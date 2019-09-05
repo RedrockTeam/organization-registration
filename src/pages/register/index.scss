@@ -1,6 +1,7 @@
 .register {
   width: 375px;
-  height: 667px;
+  height: 100vh;
+  box-sizing: border-box;
   background: rgba(250, 251, 251, 1);
   & > View {
     &:last-child {

@@ -1,7 +1,8 @@
 .person-info {
   width: 375px;
-  height: 667px;
+  height: 100vh;
   background: rgba(250, 251, 251, 1);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;

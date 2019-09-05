@@ -36,6 +36,10 @@ export default class HasRegister extends PureComponent<Props, {}> {
     changeStatus: (oName: string, dName: string) => {}
   }
 
+  state = {
+    isLongScreen: false
+  }
+
   async changeReadState(
     oName: string,
     dName: string,
@@ -59,9 +63,21 @@ export default class HasRegister extends PureComponent<Props, {}> {
     }
   }
 
+  componentWillMount() {
+    const { screenWidth, screenHeight } = Taro.getSystemInfoSync()
+    if (screenHeight / screenWidth > 1.8) {
+      this.setState({
+        isLongScreen: true
+      })
+    }
+  }
+
   render() {
     return (
-      <View className="has-register">
+      <View
+        className="has-register"
+        style={this.state.isLongScreen ? { maxHeight: '655px' } : undefined}
+      >
         {this.props.hasRegisterLists.length > 0 ? (
           this.props.hasRegisterLists.map((item, index) => {
             const organization = item.organization

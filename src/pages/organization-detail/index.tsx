@@ -44,6 +44,7 @@ interface State {
   organization: Organization
   departmentIndex: number
   enableMove: boolean
+  isIphoneX: boolean
 }
 
 export default class Main extends PureComponent<{}, State> {
@@ -110,7 +111,8 @@ export default class Main extends PureComponent<{}, State> {
       ]
     },
     departmentIndex: 0,
-    enableMove: true
+    enableMove: true,
+    isIphoneX: false
   }
 
   touchStart(e) {
@@ -228,8 +230,13 @@ export default class Main extends PureComponent<{}, State> {
     }, 2000)
   }
   componentWillMount() {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
+      this.setState({
+        isIphoneX: true
+      })
+    }
     const { sign } = this.$router.params
-
     if (sign) {
       const organization = organizationListDetail[sign]
       this.setState({
@@ -294,7 +301,10 @@ export default class Main extends PureComponent<{}, State> {
     const introductions = departmentList.map(value => value.introduction)
 
     return (
-      <View className="organization-detail">
+      <View
+        className="organization-detail"
+        style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
+      >
         <Navigation text={name} enableBack={true} />
         <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
           <View className="arrow arrow-left" onClick={this.lastDepartment} />

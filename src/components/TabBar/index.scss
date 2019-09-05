@@ -9,6 +9,8 @@
   box-sizing: border-box;
   padding-left: 62px;
   padding-right: 62px;
+  position: fixed;
+  bottom: 0;
   & > View {
     width: 36px;
     height: 39px;

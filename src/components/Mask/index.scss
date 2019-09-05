@@ -4,8 +4,8 @@ mask {
 // 取消微信小程序默认mask样式
 
 .mask {
-  width: 375px;
-  height: 667px;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;

@@ -1,6 +1,7 @@
 .organization-detail {
   width: 375px;
-  height: 667px;
+  height: 100vh;
+  box-sizing: border-box;
   overflow: hidden;
   & > View {
     &:nth-child(2) {

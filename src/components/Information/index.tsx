@@ -1,4 +1,4 @@
-import Taro, { PureComponent, useContext } from '@tarojs/taro'
+import Taro, { PureComponent } from '@tarojs/taro'
 import { View, Text, Input, Button } from '@tarojs/components'
 
 import Navigation from '../Navigation'
@@ -40,6 +40,7 @@ interface State {
   stu_num: string
   stu_qq: string
   stu_phone: string
+  isIphoneX: boolean
 }
 
 export default class Information extends PureComponent<Props, State> {
@@ -49,7 +50,8 @@ export default class Information extends PureComponent<Props, State> {
     stu_name: '',
     stu_num: '',
     stu_qq: '',
-    stu_phone: ''
+    stu_phone: '',
+    isIphoneX: false
   }
 
   changeName(e): void {
@@ -183,6 +185,12 @@ export default class Information extends PureComponent<Props, State> {
   }
 
   componentWillMount() {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
+      this.setState({
+        isIphoneX: true
+      })
+    }
     const { stu_name, stu_num, stu_qq, stu_phone } = this.props.stuInfo
     this.setState({
       stu_name,
@@ -201,7 +209,10 @@ export default class Information extends PureComponent<Props, State> {
   render() {
     const { stu_name, stu_num, stu_qq, stu_phone } = this.state
     return (
-      <View className="person-info">
+      <View
+        className="person-info"
+        style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
+      >
         {this.state.maskIsShow ? <Mask type={this.state.maskType} /> : null}
         <Navigation
           text="个人信息"

@@ -7,10 +7,10 @@ interface StuInfo {
   stu_phone: string
 }
 const stuInfo = {
-  stu_name: ' ',
-  stu_num: ' ',
-  stu_qq: ' ',
-  stu_phone: ' '
+  stu_name: '',
+  stu_num: '',
+  stu_qq: '',
+  stu_phone: ''
 }
 
 const changeStuInfo = (stuInfo: StuInfo) => {}

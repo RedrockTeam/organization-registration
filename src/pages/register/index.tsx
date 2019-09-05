@@ -12,6 +12,7 @@ import './index.scss'
 interface State {
   maskIsShow: boolean,
   enableRegister: boolean
+  isIphoneX: boolean
 }
 
 export default class Register extends PureComponent<{}, State> {\
@@ -22,7 +23,8 @@ export default class Register extends PureComponent<{}, State> {\
 
   state = {
     maskIsShow: false,
-    enableRegister: true
+    enableRegister: true,
+    isIphoneX: false
   }
 
   maskShow(): void {
@@ -76,6 +78,15 @@ export default class Register extends PureComponent<{}, State> {\
     }
   }
 
+  componentWillMount() {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
+      this.setState({
+        isIphoneX: true
+      })
+    }
+  }
+
   render() {
     const { stuInfo } = useContext(StuInfoContext)
     const { addDepartment } = useContext(HasRegisterContext)
@@ -83,7 +94,7 @@ export default class Register extends PureComponent<{}, State> {\
     const { organization, department } = this.$router.params
 
     return (
-      <View className="register">
+      <View className="register" style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}>
         {this.state.maskIsShow ? <Mask type="registersuccess" /> : null}
         <Navigation text="信息核对" enableBack={true} />
         <View>

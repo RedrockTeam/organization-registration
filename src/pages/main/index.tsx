@@ -18,7 +18,8 @@ export default class Main extends PureComponent {
   }
 
   state = {
-    pageType: 'PersonInfo'
+    pageType: 'PersonInfo',
+    isIphoneX: false
   }
 
   changePage = (pageType: string) => {
@@ -28,6 +29,12 @@ export default class Main extends PureComponent {
   }
 
   componentWillMount() {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
+      this.setState({
+        isIphoneX: true
+      })
+    }
     const params = this.$router.params
     if (params.to) {
       const { to } = params
@@ -59,7 +66,10 @@ export default class Main extends PureComponent {
     switch (pageType) {
       case 'OrganizationIndex': {
         return (
-          <View className="main">
+          <View
+            className="main"
+            style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
+          >
             <Navigation text="报名系统" enableBack={false} />
             <OrganizationIndex />
             <TabBar pageType={pageType} changePage={this.changePage} />
@@ -68,7 +78,10 @@ export default class Main extends PureComponent {
       }
       case 'HasRegister': {
         return (
-          <View className="main">
+          <View
+            className="main"
+            style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
+          >
             <Navigation text="已报部门" enableBack={false} />
             <HasRegister
               hasRegisterLists={hasRegister}
@@ -84,7 +97,10 @@ export default class Main extends PureComponent {
       }
       case 'PersonInfo': {
         return (
-          <View className="main">
+          <View
+            className="main"
+            style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
+          >
             <Navigation text="个人信息" enableBack={false} />
             <PersonInfo />
             <TabBar pageType={pageType} changePage={this.changePage} />

@@ -126,6 +126,10 @@ export default class TabBar extends PureComponent<Props, State> {
     }
   }
 
+  componentWillMount() {
+
+  }
+
   render() {
     const tabState: Array<TabState> = this.state.TabStates[this.props.pageType]
 
