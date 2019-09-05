@@ -27,7 +27,6 @@ interface OrganizationListDetail {
   shelian: Organization
   yanhui: Organization
   huweidui: Organization
-  xianjin: Organization
 }
 
 const organizationListDetail: OrganizationListDetail = {
@@ -428,67 +427,6 @@ const organizationListDetail: OrganizationListDetail = {
         },
         introduction:
           '重庆邮电大学国旗护卫队成立于2005年，原隶属于校团委，后调归学校保卫处人民武装部下。自成立至今，出色的完成了重庆人民广场“五一”升国旗任务、重庆市第五次少代会升旗仪式、校运会、八院联谊、九院联谊、特殊纪念日及每周一的升旗等任务。队内每一位队员都经过严格的训练，在校武装部和各届队员的共同努力下，已经形成具有重庆邮电大学特色的升旗模式。重庆邮电大学国旗护卫队受到各界广泛好评，为新时代爱国主义教育工作做出了巨大贡献。'
-      },
-    ]
-  },
-  xianjin: {
-    name: '先进制造工程学院',
-    departmentList: [
-      {
-        name: '团总支组织部',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-zuzhi.png)`
-        },
-        introduction:
-          '组织部是负责团员思想教育，组织建设的职能部门。主要工作为创建优秀团支部，推荐优秀团支部，推荐优秀团员及入党积极分子，团费管理，协助党组织进行入党积极分子的培训，党团工作室的管理等工作。同时开展诸如“主题团日活动”，“团干大比武”，“青年分团校培训”等党团性质的特色活动。'
-      },
-      {
-        name: '团总支青年志愿者协会',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-qingxie.png)`
-        },
-        introduction:
-          '校园的每个需要帮忙服务的角落总会有那么一群阳光、勤劳的青年，他们不辞劳苦。小红帽，红马甲是他们的标志；一心一意为群众为社会服务奉献是他们的宗旨。他们是一群热血奔腾的青年志愿者。哪里有需要哪里就有他们，热心奉献是他们的精神是他们的灵魂。而青协就是他们——青年志愿者的大家庭。'
-      },
-      {
-        name: '团总支宣传部',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-xuanchuan.png)`
-        },
-        introduction:
-          '宣传部是院学生会与广大师生沟通与交流的一个平台以“宣传学院，服务同学，锻炼自我”为前提做好一切宣传工作。好奇学院的公众号是谁在运营吗?想学会好看的海报、PPT、视频怎么制作吗？想知道如何拍出好看的照片吗?想深入了解一些大型活动的策划及流程吗?在这里我们将深入学习PS、PR、AI等软件的应用;微信、QQ、微博等新媒体运营;还有摄影、录像等技能！人世间有诸多百媚千红，唯有宣传是情之所钟。'
-      },
-      {
-        name: '学生会办公室',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-bangong.png)`
-        },
-        introduction:
-          '从办公小白到文案大神，在这里我们帮你实现！如果你想要从事财务工作，那么这里将是你的起航点！来到这里，下一部《人民的名义》由你来编写！办公室，作为一个行政部门，负责报账、物资管理、文案收集和监督考核，是我们学院学生会的枢纽部门。今年下半年，办公室将继续坚持“为学生会服务”这一宗旨，在宠爱新生的同时，多方面培养办公技能，文娱两开花。先进办公室，办公还是得先进。'
-      },
-      {
-        name: '学生会文体部',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-wenti.png)`
-        },
-        introduction:
-          '在这里，你可以加入啦啦舞蹈，练就形体；在这里，你可以参与篮球运动，结识朋友；在这里，你可以迈向运动赛场，拼搏自我；在这里，你可以发现音乐才能，尽显风采。或许你会说你的这些你都不是很厉害，但是，只要你有一颗付出的心，只要你愿意为他人服务，愿意支持他们，愿意让他们在你的帮助下做到最好，那么文体部永远欢迎你的加入！'
-      },
-      {
-        name: '学生会科技综合部',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-keji.png)`
-        },
-        introduction:
-          '科技综合部简称科综，是集学习、科技、社团三方面的综合部门。在这里可以做学习、做科技、搞社团活动，同时我们也要抓学习，创建良好学风；抓科技，增强专业技能；抓社团，提升综合素质。花径不曾缘客扫，蓬门今使为君开。加入我们吧，在这里，有你们想要的。'
-      },
-      {
-        name: '学生会生活权益部',
-        posterStyle: {
-          backgroundImage: `url(${imgHostname}xianjin/xianjin-quanyi.png)`
-        },
-        introduction:
-          '生活权益部由自律权益部，调研部，生活部三个板块组成。生活权益部作为与学生切身利益联系最为密切的部门，始终秉承“全心权益为你而来”的宗旨。我们的工作主要围绕学生的切身利益展开，旨在提高学生生活质量，增强学生维权意识，维护学生权益。'
       },
     ]
   },

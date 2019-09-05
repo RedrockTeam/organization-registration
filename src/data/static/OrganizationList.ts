@@ -60,11 +60,6 @@ const organizationList: Array<Organization> = [
     name: '国旗护卫队',
     desc: '我一身戎装 护国旗飘扬'
   },
-  {
-    sign: 'xianjin',
-    name: '先进制造工程学院',
-    desc: '世界先锋为先进，大国之本为制造'
-  }
 ]
 
 export default organizationList
