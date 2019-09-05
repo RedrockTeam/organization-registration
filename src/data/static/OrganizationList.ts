@@ -11,9 +11,19 @@ const organizationList: Array<Organization> = [
     desc: '从事互联网产品开发运营的校级学生组织'
   },
   {
-    sign: 'sanbushi',
-    name: '团委三部室',
-    desc: '校团委核心直属部室'
+    sign: 'bangongshi',
+    name: '团委办公室',
+    desc: '学生团学工作的枢纽与核心'
+  },
+  {
+    sign: 'zuzhibu',
+    name: '团委组织部',
+    desc: '全校团学工作组织建设核心'
+  },
+  {
+    sign: 'xuanchuanbu',
+    name: '团委宣传部',
+    desc: '通过多种形式传达组织信息丰富校园生活'
   },
   {
     sign: 'xueshenghui',

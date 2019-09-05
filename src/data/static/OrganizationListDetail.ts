@@ -17,7 +17,9 @@ interface Organization {
 
 interface OrganizationListDetail {
   hongyan: Organization
-  sanbushi: Organization
+  bangongshi: Organization
+  zuzhibu: Organization
+  xuanchuanbu: Organization
   xueshenghui: Organization
   qingxie: Organization
   dayituan: Organization
@@ -74,8 +76,8 @@ const organizationListDetail: OrganizationListDetail = {
       }
     ]
   },
-  sanbushi: {
-    name: '团委三部室',
+  bangongshi: {
+    name: '团委办公室',
     departmentList: [
       {
         name: '团委办公室',
@@ -85,6 +87,11 @@ const organizationListDetail: OrganizationListDetail = {
         introduction:
           '重庆邮电大学团委办公室(以下简称办公室）是共青团重庆邮电大学委员会直属机构之一。是学校团学工作的枢纽与核心，在团委与各校级学生组织之间起到桥梁与纽带的作用，是所有学生组织中与老师联系最密切的部门，是团委老师的得力助手。办公室负责团委工作的上传下达——向上通过制作团委工作简报《重邮共青团》等，向团中央、团市委汇报学校团学工作动态；向下沟通联系各校级学生组织，传达团委相关工作要求，并针对学生组织相关工作予以监督。参与学生组织各类活动的筹备工作，负责学生活动场地的管理工作，监督并完善团建在线网站的建设。同时，办公室还协助完成学校大型活动的会务，秘书工作，协助完成大学生志愿者暑期“三下乡”社会实践活动，负责各项文件，奖状资料的管理存档工作。'
       },
+    ]
+  },
+  zuzhibu: {
+    name: '团委组织部',
+    departmentList: [
       {
         name: '团委组织部',
         posterStyle: {
@@ -93,6 +100,11 @@ const organizationListDetail: OrganizationListDetail = {
         introduction:
           '重庆邮电大学团委组织部是校团委核心直属部室。组织部以“严谨 高效 励志 笃行”作为部训，协调统筹各学院团总支及基层团支部开展工作。是负责全校共青团的基层组织建设工作、推优入党工作、五四评优表彰工作、开展青年马克思主义培养工程、指导主题团日活动的开展和团支部“活力提升”工程的实施以及开展班级团支部和班委会一体化运行机制改革等工作的职能部门。'
       },
+    ]
+  },
+  xuanchuanbu: {
+    name: '团委宣传部',
+    departmentList: [
       {
         name: '团委宣传部',
         posterStyle: {
@@ -351,7 +363,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '科技实践部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-keji.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-keji.jpg)`
         },
         introduction:
           '我们将致力于创办与科技相关的赛事活动，如主办全校研究生英语风采大赛、协办各项科技竞赛、参管研究生辩论队。为我校研究生打开有创新、有思想、有趣味的新世界大门。'
@@ -359,7 +371,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '信息宣传部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-xinxuan.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-xinxuan.jpg)`
         },
         introduction:
           '负责公众号运营，研会线上、线下宣传产品设计，宣传片、视频等多媒体作品制作以及其他宣传工作，对研会各个活动进行品牌包装和技术支持。让我们告别枯燥的海报制作，轻松掌握新媒体运营技巧。在信宣，技术不是关键，脑洞征服世界。'
@@ -367,7 +379,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '外联部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-wailian.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-wailian.jpg)`
         },
         introduction:
           '主管企业俱乐部，负责全国各兄弟院校之间、本校研究生与企业等单位之间、校内各组织间的沟通与交流。各高校知名专家学者，重邮知名校友校企，社会知名人士都是你沟通的对象。'
@@ -375,7 +387,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '自律权益部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-zilv.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-zilv.jpg)`
         },
         introduction:
           '这里是学生实现自我管理的重要平台，我们要配合学校管理日常纪律、维护公共秩序，还要协助学生宿舍安全卫生检查工作。我们的目标是：为全校研究生营造安全、文明、舒适的学习和生活环境。'
@@ -383,7 +395,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '人力资源部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-renli.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-renli.jpg)`
         },
         introduction:
           '掌握研会命脉，聆听各部心声。负责研会的人事管理、活动记录和物资进出与调度。长期的工作中以严谨高效的作风，根据研会章程，制定活动规范与考核制度。主办新老生交流会及素质拓展等活动，加强研会内部交流融合。人力资源部，团结研会力量，做实力HR ！'
@@ -391,7 +403,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '文体部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-wenti.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-wenti.jpg)`
         },
         introduction:
           '研究生校园文化生活的缔造者和领跑人。于文，主办迎新晚会等大型活动，丰富研究生的课余生活，协助各分研会举办各类文艺活动，营造活跃向上的氛围。于体，参与组建、管理研究生各类球队，积极参加各类校级比赛，如运动会、“青春杯”篮球、足球赛、公园排球赛、校园马拉松等，宣传体育育人理念，提高研究生的综合素质。'
@@ -399,7 +411,7 @@ const organizationListDetail: OrganizationListDetail = {
       {
         name: '学术交流部',
         posterStyle: {
-          backgroundImage: `url(${imgHostname}yanhui/yanhui-xueshu.png)`
+          backgroundImage: `url(${imgHostname}yanhui/yanhui-xueshu.jpg)`
         },
         introduction:
           '以举办特色鲜明的学术讲座和论坛活动为主，拓宽研究生的学术视野，增强同学们的学术研究氛围。同时根据在校研究生的需求，开展切实有效的不同主题交流活动，构建各领域专家与同学们面对面交流的平台。学术交流部，看似高冷却超接地气的部门！'
