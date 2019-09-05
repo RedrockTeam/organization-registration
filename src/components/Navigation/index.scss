@@ -17,13 +17,17 @@
     height: 30px;
     position: absolute;
     bottom: 8px;
-    left: 0;
+    left: 10px;
   }
   .arrow {
     width: 10px;
     height: 10px;
     opacity: 0.8;
     z-index: 2;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     &::after {
       content: '';
       width: 10px;
