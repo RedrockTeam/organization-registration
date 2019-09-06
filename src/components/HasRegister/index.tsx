@@ -77,7 +77,9 @@ export default class HasRegister extends PureComponent<Props, {}> {
     return (
       <View
         className="has-register"
-        style={this.state.isIphoneX ? { paddingTop: `${44 + 79}px` } : undefined}
+        style={
+          this.state.isIphoneX ? { paddingTop: `${44 + 79}px` } : undefined
+        }
       >
         {this.props.hasRegisterLists.length > 0 ? (
           this.props.hasRegisterLists.map((item, index) => {
@@ -96,13 +98,16 @@ export default class HasRegister extends PureComponent<Props, {}> {
                       ? { background: 'rgb(255, 255, 255)' }
                       : { background: 'rgb(219, 219, 219)' }
                   }
-                  onClick={() =>
-                    this.changeReadState(
-                      organization,
-                      department,
-                      item.info,
-                      item.status
-                    )
+                  onClick={
+                    item.info.length >= 1
+                      ? () =>
+                          this.changeReadState(
+                            organization,
+                            department,
+                            item.info,
+                            item.status
+                          )
+                      : () => false
                   }
                 >
                   {item.status == 1 ? <View className="point"></View> : null}
