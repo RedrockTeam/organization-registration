@@ -1,4 +1,4 @@
-const imgHostname = 'https://hongyan.cqupt.edu.cn/static/register/'
+const imgHostname = 'https://cyxbsmobile.redrock.team/static/register/'
 
 interface PosterStyle {
   backgroundImage: string

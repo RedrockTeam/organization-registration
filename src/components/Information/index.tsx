@@ -145,7 +145,7 @@ export default class Information extends PureComponent<Props, State> {
         delete response.data.id
         const data = response.data
         changeStuInfo(data)
-        Taro.reLaunch({
+        Taro.redirectTo({
           url: `/pages/main/index?from=modify&to=PersonInfo`
         })
         Taro.showLoading({
