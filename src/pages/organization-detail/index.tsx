@@ -301,12 +301,13 @@ export default class Main extends PureComponent<{}, State> {
     const introductions = departmentList.map(value => value.introduction)
 
     return (
-      <View
-        className="organization-detail"
-        style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
-      >
+      <View className="organization-detail">
         <Navigation text={name} enableBack={true} />
-        <View onTouchStart={this.touchStart} onTouchEnd={this.touchEnd}>
+        <View
+          onTouchStart={this.touchStart}
+          onTouchEnd={this.touchEnd}
+          style={this.state.isIphoneX ? { paddingTop: `${44 + 64}px` } : undefined}
+        >
           <View className="arrow arrow-left" onClick={this.lastDepartment} />
           <View style={this.state.style}>
             {posters.map((value, index) => (

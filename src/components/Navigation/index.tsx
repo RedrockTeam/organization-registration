@@ -8,6 +8,18 @@ interface Props {
 }
 
 export default class Navigation extends PureComponent<Props, {}> {
+  state = {
+    isIphoneX: false
+  }
+  componentWillMount() {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
+      this.setState({
+        isIphoneX: true
+      })
+    }
+  }
+
   backLastPage() {
     Taro.navigateBack({
       delta: 1
@@ -16,9 +28,12 @@ export default class Navigation extends PureComponent<Props, {}> {
 
   render() {
     return (
-      <View className="navigation">
+      <View
+        className="navigation"
+        style={this.state.isIphoneX ? { borderTop: '44px solid #e5e5e5' } : undefined}
+      >
         {this.props.enableBack ? (
-          <View className='arrow-box' onClick={this.backLastPage}>
+          <View className="arrow-box" onClick={this.backLastPage}>
             <View className="arrow" />
           </View>
         ) : null}

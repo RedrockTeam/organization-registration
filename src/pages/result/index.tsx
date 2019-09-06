@@ -44,12 +44,13 @@ export default class Result extends PureComponent<{}, State> {
 
   render() {
     return (
-      <View
-        className="result"
-        style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}
-      >
+      <View className="result">
         <Navigation text="录取结果" enableBack={true} />
-        <View>
+        <View
+          style={
+            this.state.isIphoneX ? { paddingTop: `${44 + 64}px` } : undefined
+          }
+        >
           <Text>{this.state.message}</Text>
           <Text>{this.state.organization}</Text>
           <Button onClick={this.back}>返回</Button>

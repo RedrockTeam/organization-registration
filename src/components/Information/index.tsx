@@ -218,7 +218,11 @@ export default class Information extends PureComponent<Props, State> {
           text="个人信息"
           enableBack={this.props.pageType === 'entrance' ? false : true}
         />
-        <Text>姓名</Text>
+        <Text
+          style={this.state.isIphoneX ? { paddingTop: `${44}px` } : undefined}
+        >
+          姓名
+        </Text>
         <Input
           type="text"
           placeholder="点击输入您的真实姓名"

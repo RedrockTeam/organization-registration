@@ -15,7 +15,7 @@ interface State {
   isIphoneX: boolean
 }
 
-export default class Register extends PureComponent<{}, State> {\
+export default class Register extends PureComponent<{}, State> {
   config: Config = {
     navigationStyle: 'custom',
     disableScroll: true
@@ -94,10 +94,10 @@ export default class Register extends PureComponent<{}, State> {\
     const { organization, department } = this.$router.params
 
     return (
-      <View className="register" style={this.state.isIphoneX ? { paddingTop: '44px' } : undefined}>
+      <View className="register">
         {this.state.maskIsShow ? <Mask type="registersuccess" /> : null}
         <Navigation text="信息核对" enableBack={true} />
-        <View>
+        <View style={this.state.isIphoneX ? { paddingTop: `${44 + 81}px` } : undefined}>
           <Text>姓名</Text>
           <Text>{stuInfo.stu_name}</Text>
           <Text>学号</Text>

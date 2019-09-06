@@ -1,13 +1,11 @@
 .organization-index {
   width: 375px;
-  max-height: 554px;
   box-sizing: border-box;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  padding-top: 79px;
+  padding-bottom: 15px + 49px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: scroll;
   & > View {
     flex-shrink: 0;
     width: 345px;

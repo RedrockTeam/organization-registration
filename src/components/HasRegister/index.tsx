@@ -37,7 +37,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
   }
 
   state = {
-    isLongScreen: false
+    isIphoneX: false
   }
 
   async changeReadState(
@@ -65,10 +65,10 @@ export default class HasRegister extends PureComponent<Props, {}> {
   }
 
   componentWillMount() {
-    const { screenWidth, screenHeight } = Taro.getSystemInfoSync()
-    if (screenHeight / screenWidth > 1.8) {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
       this.setState({
-        isLongScreen: true
+        isIphoneX: true
       })
     }
   }
@@ -77,7 +77,7 @@ export default class HasRegister extends PureComponent<Props, {}> {
     return (
       <View
         className="has-register"
-        style={this.state.isLongScreen ? { maxHeight: '655px' } : undefined}
+        style={this.state.isIphoneX ? { paddingTop: `${44 + 79}px` } : undefined}
       >
         {this.props.hasRegisterLists.length > 0 ? (
           this.props.hasRegisterLists.map((item, index) => {

@@ -7,8 +7,8 @@ import './app.scss'
 class App extends Component {
   config: Config = {
     pages: [
-      'pages/index/index',
       'pages/main/index',
+      'pages/index/index',
       'pages/result/index',
       'pages/register/index',
       'pages/organization-detail/index',

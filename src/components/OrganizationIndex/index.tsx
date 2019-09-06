@@ -7,7 +7,7 @@ import './index.scss'
 
 export default class OrganizationIndex extends PureComponent {
   state = {
-    isLongScreen: false
+    isIphoneX: false
   }
   toDetail(sign: string) {
     Taro.navigateTo({
@@ -16,10 +16,10 @@ export default class OrganizationIndex extends PureComponent {
   }
 
   componentWillMount() {
-    const { screenWidth, screenHeight } = Taro.getSystemInfoSync()
-    if (screenHeight / screenWidth > 1.8) {
+    const { model } = Taro.getSystemInfoSync()
+    if (/iPhone\sX/.test(model)) {
       this.setState({
-        isLongScreen: true
+        isIphoneX: true
       })
     }
   }
@@ -37,7 +37,7 @@ export default class OrganizationIndex extends PureComponent {
     return (
       <View
         className="organization-index"
-        style={this.state.isLongScreen ? { maxHeight: '655px' } : undefined}
+        style={this.state.isIphoneX ? { paddingTop: `${44 + 79}px` } : undefined}
       >
         {organizationLists}
       </View>
